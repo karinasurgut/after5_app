@@ -1,0 +1,200 @@
+/* mixins, variables, etc. */
+$grayMediumLight: #eaeaea;
+
+/* universal */
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+ /* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #999;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+/* end typography */
+
+/* footer */
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #999;
+  a {
+    color: #555;
+    &:hover {
+      color: #222;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
+}
+/* end footer */
+
+.hor-wrapper {
+	float:left;
+	float: left;
+	white-space: nowrap;
+	overflow: hidden;
+
+	margin-left: 0;
+	margin-right: 0;
+	/*overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+	*/
+}
+.internal {
+	display: inline;
+}
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.left-date{
+	font-size: 4em;
+	color: #0AB1FF;
+	text-align: center;
+	margin-bottom:-15px;
+}
+.left-month{
+	font-size: 1.5em;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #C2C2C2;
+	margin:0;
+}
+
+.left-week{
+	font-weight:bold;
+	margin:0;
+	font-size:1.2em;
+}
+
+.modal-content{
+  margin-top:100px;
+}
+
+.navbar-inverse {
+  background-color: #00b3e5;
+  border-color: #fff;
+}
+.jumbotron {
+padding: 0px;
+margin-bottom: 0;
+color: inherit;
+background-color: #00b3e5;
+}
+
+.featured div img{
+margin-bottom:10px;
+width: 100%;
+}
+
+.navbar-inverse .navbar-toggle {
+	border: none;
+}
+.navbar-inverse .navbar-toggle:hover, 
+.navbar-inverse .navbar-toggle:focus{
+background-color:#5BC4FF;
+}
+
+.deal-carousel{
+margin-top:15px;
+}
+.deal-carousel .date {
+	text-align:center;
+}
+.deal-carousel img {
+height:120px;
+width:120px;
+}
+.featured-title{
+font-size:23px;
+color:#686868;
+}
+.navbar-toggle{
+float:left;
+}
+.navbar-brand{
+width: 70%;
+text-align: center;
+}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+border-color: #fff;
+}
+.nav>li>a {
+color:#fff;
+}
+
+/*.sb_wrapper input[type="text"],*/
+div.sb_dropdown{
+	border:1px solid #fff;
+	background: #fafafa; 
+	background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#fafafa)); 
+	background: -moz-linear-gradient(top, #f2f2f2, #fafafa);
+	-moz-box-shadow:1px 1px 3px #555;
+	-webkit-box-shadow:1px 1px 3px #555;
+	-box-shadow:1px 1px 3px #555;
+	outline:none;
+	padding:6px 5px 6px 20px;
+	margin:3px 0px;
+	-moz-border-radius:0px 0px 5px 5px;
+	-webkit-border-bottom-right-radius:5px;
+	-webkit-border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+	border-bottom-left-radius:5px;
+}
