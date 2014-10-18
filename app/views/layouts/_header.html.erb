@@ -8,6 +8,7 @@
         <span class="icon-bar"></span>
       </button>
       <%= link_to image_tag("after5.png", alt: "After5"), root_path, id: "logo", class: "navbar-brand" %>
+      
     </div>
     <div class="navbar-collapse collapse">
     	<ul class="nav nav-pills pull-left">
@@ -17,5 +18,16 @@
     	  <li><%= link_to "Contact", contact_path %></li>
     	</ul>
     </div><!--/.navbar-collapse -->
+    <div class="navbar-user pull-right">
+        <% if user_signed_in? %>
+           <%= userpic_for(current_user) %>
+           Logged in as <span class="glyphicon glyphicon-user"></span> <strong><%= current_user.email %></strong>.
+          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+          <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+        <% end %>
+      </div>
   </div>
 </header>

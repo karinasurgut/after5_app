@@ -1,4 +1,6 @@
 After5::Application.routes.draw do
+  get "users/new"
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   root  'static_pages#home'
   match '/terms',    to: 'static_pages#terms',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
