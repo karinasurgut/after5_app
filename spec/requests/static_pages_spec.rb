@@ -14,15 +14,15 @@ describe "Static pages" do
     let(:heading)    { 'After5' }
     let(:page_title) { '' }
 
-    it_should_behave_like "all static pages"
+    it { should have_title(full_title(page_title)) }
     it { should_not have_title('| Home') }
   end
 
   describe "Terms page" do
     before { visit terms_path }
 
-    let(:heading)    { 'Terms & Conditions' }
-    let(:page_title) { 'Terms & Conditions' }
+    let(:heading)    { 'Terms of Service' }
+    let(:page_title) { 'Terms of Service' }
 
     it_should_behave_like "all static pages"
   end
@@ -50,7 +50,7 @@ describe "Static pages" do
     click_link "About"
     expect(page).to have_title(full_title('About'))
     click_link "Terms & Conditions"
-    expect(page).to have_title(full_title('Terms & Conditions'))
+    expect(page).to have_title(full_title("Terms of Service"))
     click_link "Contact"
     expect(page).to have_title(full_title('Contact Us'))
     
