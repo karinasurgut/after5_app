@@ -13,14 +13,7 @@
 			<button type="submit" class="btn btn-default sb_search"><span class="glyphicon glyphicon-search"></span></button>
 		</span>
 	  </div>
-	  <div class="sb_dropdown" style="display:none;" data-toggle="buttons">
-		<!--<li class="sb_filter">Filter your search</li>-->
-		<!--<li><input type="checkbox"><label for="all"><strong>All Categories</strong></label></li>-->
-		<label for="wine" class="btn btn-primary"><input type="checkbox">wine</label>
-		<label for="rooftop" class="btn btn-primary"><input type="checkbox">rooftop</label>
-		<label for="karaoke" class="btn btn-primary" ><input type="checkbox">karaoke</label>
-		<label for="rum" class="btn btn-primary"><input type="checkbox">rum</label>					
-	  </div>
+	  <%= render 'shared/dropdown' %>
 	</form>
 	<div class="alert alert-info">
 		<button type="button" class="close" data-dismiss="alert">
