@@ -1,0 +1,5 @@
+<%# if current_user.admin? %>
+    <%= link_to "delete", object, method: :delete,
+                                     data: { confirm: "Are you sure?" },
+                                     title: object.name %>
+<%# end %>

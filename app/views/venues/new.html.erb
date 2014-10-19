@@ -1,0 +1,45 @@
+<% provide(:title, 'Add Venue') %>
+<h1>Add Venue</h1>
+<p>Create new venue using the form below:</p>
+<div class="form-container">
+    <%= form_for(@venue, html: { role: "form" }) do |f| %>
+	  <%= render 'shared/error_messages', object: f.object %>
+	<div class="form-group">
+      <%= f.label :name, "Venue Name" %>
+      <%= f.text_field :name, class: "form-control" %>
+	</div>
+	<div class="form-group">
+      <%= f.label :phone, "Phone" %>
+      <%= f.text_field :phone, class: "form-control" %>
+	</div>
+	<div class="form-group">
+      <%= f.label :website, "Website" %>
+      <%= f.text_field :website, placeholder: "e.g. http://www.venue.com.au", class: "form-control" %>
+	</div>
+	<div class="form-group">
+      <%= f.label :email, "Email" %>
+      <%= f.text_field :email, class: "form-control" %>
+	</div>
+	<div class="form-group">
+      <%= f.label :street, "Street Address" %>
+      <%= f.text_field :street, class: "form-control" %>
+	</div>
+	<div class="form-group">
+      <div class="row">
+        <div class="col-xs-8">  
+          <%= f.label :suburb, "Suburb" %>
+          <%= f.text_field :suburb, class: "form-control" %>
+		</div>
+	    <div class="col-xs-4">	  
+	      <%= f.label :postcode, "Postcode" %>
+	      <%= f.text_field :postcode, class: "form-control" %>
+		</div>
+	  </div>
+	</div>
+	<div class="form-group">
+      <%= f.label :region, "Area" %>
+      <%= f.text_field :region, class: "form-control" %>
+	</div>
+      <%= f.submit "Create Venue", class: "btn btn-large btn-primary" %>
+    <% end %>
+</div>
