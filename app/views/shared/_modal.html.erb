@@ -1,0 +1,13 @@
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content container">
+      <% if user_signed_in? %>
+        <h3>Your check-in has been saved!</h3>
+        <p><button class="btn btn-primary btn-block" type="button">Share it with friends</button></p>
+      <% else %>
+      	<<h3>Please sign in to check in!</h3>
+		<%= render 'shared/fb_signin' %>
+      <% end %>
+	</div>
+  </div>
+</div>

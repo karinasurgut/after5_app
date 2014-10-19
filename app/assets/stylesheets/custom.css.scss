@@ -185,7 +185,6 @@ color:#fff;
   margin-right: 5px;
 }
 
-/*.sb_wrapper input[type="text"],*/
 div.sb_dropdown{
 	border:1px solid #fff;
 	background: #fafafa; 
@@ -202,4 +201,22 @@ div.sb_dropdown{
 	-webkit-border-bottom-left-radius:5px;
 	border-bottom-right-radius:5px;
 	border-bottom-left-radius:5px;
+}
+
+/* edit profile page */
+.profile-edit-subtitle {
+  background-color: #ccc;
+  h3{
+    text-align: center;
+    color: #999;
+  }
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
 }

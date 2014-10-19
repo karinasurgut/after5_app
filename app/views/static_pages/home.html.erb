@@ -1,11 +1,4 @@
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content container">
-      <h3>Your check-in has been saved!</h3>
-      <p><button class="btn btn-primary btn-block" type="button">Share it with friends</button></p>
-	</div>
-  </div>
-</div>
+<%= render 'shared/modal' %>
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
   <div class="container">                        
@@ -45,9 +38,9 @@
 	</div>
   </div>
 </div>
-<div class="fb-login container-fluid alert alert-info">
-	<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary btn-lg btn-block" %>
-</div>
+<% if !user_signed_in? %>
+  <%= render 'shared/fb_signin' %>
+<% end %>
 <div class="container">
   <div class="container-fluid deals-grid owl-carousel">
   	<div class="featured-daypicker">

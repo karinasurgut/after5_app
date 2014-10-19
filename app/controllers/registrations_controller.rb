@@ -1,14 +1,4 @@
-class UsersController < ApplicationController
-  before_action :correct_user, only: [:edit,:update]
-  #before_action :authenticate_user!, only: [:edit,:update]
-
-  def new
-  end
-
-  def show
-    @user = User.find(params[:id])
-  end
-
+class RegistrationsController < Devise::RegistrationsController
   def update
     # For Rails 4
     account_update_params = devise_parameter_sanitizer.sanitize(:account_update)
@@ -19,7 +9,7 @@ class UsersController < ApplicationController
       account_update_params.delete("password_confirmation")
     end
 
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
     if @user.update_attributes(account_update_params)
       set_flash_message :notice, :updated
       # Sign in the user bypassing validation in case their password changed
@@ -31,22 +21,11 @@ class UsersController < ApplicationController
   end
 
 
-
   private
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
-    end
 
-  	def user_params
-  		params.require(:user).permit(:name, :email, :password, :phone, :location, 
-  									:password_confirmation)
-  	end
+	  def after_sign_up_path_for(resource)
+	    root_path
+	  end
 
-    # Before filters
-
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
-    end
 
 end
