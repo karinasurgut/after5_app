@@ -30,7 +30,9 @@ class UsersController < ApplicationController
     end
   end
 
-
+  def user_location
+    @lat_lng = cookies[:lat_lng].split("|")
+  end
 
   private
     def admin_user

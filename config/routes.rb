@@ -2,12 +2,14 @@ After5::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }#, :path_prefix => 'd'
   resources :users, only: :show
   resources :venues
+  resources :deals, except: [:new, :show, :index]
   root  'static_pages#home'
   match '/users/:id',    to: 'users#show', as: @user,        via: 'get'
   match '/terms',        to: 'static_pages#terms',   via: 'get'
   match '/about',        to: 'static_pages#about',   via: 'get'
   match '/contact',      to: 'static_pages#contact', via: 'get'
-  match '/search',       to: 'static_pages#search',  via: 'get'
+  match '/search',       to: 'deals#search',         via: 'get'
+  match '/venues/:id/new',    to: 'venues#deal', as: :new_deal,        via: 'get'
   #match '/venues/new',     to: 'venues#new',           via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

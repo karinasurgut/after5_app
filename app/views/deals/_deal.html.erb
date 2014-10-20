@@ -1,0 +1,30 @@
+<li>
+ <div class="panel panel-default panel-deal">
+  <div class="panel-body">
+	<h3 style="color:red;"><%= deal.title %></h3>
+	<h4><%= deal.venue.name %> <span class="glyphicon glyphicon-cutlery"></span></h4>
+	<p><%= deal.content %><br/>
+	<%# if current_user.admin? %>
+      <%= link_to "edit", edit_deal_path(deal) %>
+      <span> | </span>
+      <%= link_to "delete", deal, method: :delete,
+                                     data: { confirm: "Are you sure?" },
+                                     title: deal.id %>
+    <%# end %></p>
+	<div class="btn-group-sm">
+		<button type="button" class="btn btn-default btn-lg">
+		 <span class="glyphicon glyphicon-heart-empty"></span> Love
+		</button>
+		<button type="button" class="btn btn-default btn-lg">
+		 <span class="glyphicon glyphicon-flash"></span> Not a fan
+		</button>
+		<button type="button" class="btn btn-default btn-lg">
+		 <span class="glyphicon glyphicon-star"></span> Want
+		</button>
+		<button type="button" class="btn btn-default btn-lg">
+		 <span class="glyphicon glyphicon-share"></span> Tell friends
+		</button>
+	</div>	  
+  </div>
+ </div>
+</li>

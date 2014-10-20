@@ -9,4 +9,9 @@ module UsersHelper
   def first_name_for(user)
     first_name = user.name.split[0..0].join("")
   end
+
+  def cur_location
+    cur_location = cookies[:cur_geo]
+
+  end 
 end

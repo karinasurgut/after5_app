@@ -18,6 +18,7 @@ describe Venue do
   it { should respond_to(:suburb) }
   it { should respond_to(:region) }
   it { should respond_to(:website) }
+  it { should respond_to(:deals) }
 
   it { should be_valid }
 

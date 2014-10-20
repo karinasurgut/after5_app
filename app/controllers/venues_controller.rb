@@ -1,11 +1,20 @@
 class VenuesController < ApplicationController
   #before_action :admin_user, only: [:new, :edit, :create, :update, :destroy]
-  before_action :get_venue, except: [:create, :new, :destroy]
+  before_action :get_venue, except: [:index, :create, :new, :destroy]
   def new
   	@venue = Venue.new
   end
   
+  def index
+   @venues = Venue.all
+  end
+
+  def deal 
+    @deal = @venue.deals.build
+  end
+
   def show
+    @deals = @venue.deals
   end
   
   def create
@@ -43,9 +52,11 @@ class VenuesController < ApplicationController
   	end
   	
   	def get_venue
-  	  @venue = Venue.find(params[:id])
+      @venue = Venue.where(id: params[:id]).first
+      redirect_to(root_url) if @venue.nil?
   	end
 
+    
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end

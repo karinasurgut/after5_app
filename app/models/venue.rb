@@ -1,4 +1,5 @@
 class Venue < ActiveRecord::Base
+	has_many :deals, dependent: :destroy
 	before_save do
 	  email.downcase!
 	  street.split.map(&:downcase).map(&:capitalize).join(' ')

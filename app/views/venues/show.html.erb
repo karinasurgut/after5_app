@@ -1,97 +1,49 @@
 <% provide(:title, @venue.name) %>
 <%= render 'shared/modal' %>
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators" style="dislay:none;">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-  </ol>
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item active">
-      <img src="img/misspeaches.jpg" alt="">
-      <div class="carousel-caption">
-       	<h1><%= @venue.name %> <span class="glyphicon glyphicon-camera"></span></h1>
-      </div>
-    </div>
-  </div>
-
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
+<div class="row">
+<div class="col-lg-6">
+<div class="image-header">
+  <%= image_tag('courthousehotel.jpg', alt:"", class: "img-rounded", style:"width:100%;") %>
+  <h1 class="center"><%= @venue.name %><!--<span class="glyphicon glyphicon-camera"></span>--></h1>
 </div>
-<div class="container-venue container">
+</div>
+<div class="col-lg-6">
+  <div class="container-venue container">
 	<div class="venue-info clearfix">		
-		<div class="col-xs-6 col-sm-6">
-          <h4><%= @venue.street %><br/>
+		<div class="col-xs-6 col-lg-3">
+          <p><%= @venue.street %><br/>
           <%= @venue.suburb %> <%= @venue.postcode %><br/>
-          Ph: <%= @venue.phone %></h4>
+          Ph: <%= @venue.phone %></p>
           <p class="label label-success">Open today till 10pm</p>
 		  <%# if current_user.admin? %>
           <div>
             <%= link_to "Edit Venue", edit_venue_path(@venue) %>
             <span> | </span>
+            <%= link_to "Create Deal", new_deal_path(@venue) %>
+            <span> | </span>
             <%= render 'shared/delete_link', object: @venue %>
       	  </div>
-      	  <div>Latitude: <%= @venue.latitude %><br/>
+      	  <div class="hidden">Latitude: <%= @venue.latitude %><br/>
       	  	Longitude: <%= @venue.longitude %></div>
           <%# end %>
         </div>
-        <div class="col-xs-6 col-sm-6">
-          <h4 style="color:darkgreen;">1.2km</h4>
+        <div class="col-xs-6 col-lg-3 center">
+          <h4 style="color:darkgreen;"><%= distance_to_user(@venue) %> km</h4>
           <p><a href="#"><span class="glyphicon glyphicon-map-marker"></span> Show map</a><p>
     	  <button class="btn btn-primary btn-warning" type="button">Where next?</button>
     	</div>
 	</div>
-	<div class="deal-info">
-	  <h3>Today's Deals</h3>
-	  <div class="panel panel-default panel-deal">
-  		<div class="panel-body">
-		<h3 style="color:red;">$10 Burger &amp; Beers</h3>
-		<h4>Miss Peaches <span class="glyphicon glyphicon-cutlery"></span></h4>
-		<p>Bluegrass, Burgers and Beers. 2 Beers for the price of 1.</p>
-		<div class="btn-group-sm">
-			<button type="button" class="btn btn-default btn-lg">
-			 <span class="glyphicon glyphicon-heart-empty"></span> Love
-			</button>
-			<button type="button" class="btn btn-default btn-lg">
-			 <span class="glyphicon glyphicon-flash"></span> Not a fan
-			</button>
-			<button type="button" class="btn btn-default btn-lg">
-			 <span class="glyphicon glyphicon-star"></span> Want
-			</button>
-			<button type="button" class="btn btn-default btn-lg">
-			 <span class="glyphicon glyphicon-share"></span> Invite friends
-			</button>
-		</div>	  
-	  </div>
-	  </div>
-	  <div class="panel panel-default panel-deal">
-  		<div class="panel-body">
-		<h3 style="color:red;">$10 Burger &amp; Beers</h3>
-		<h4>Miss Peaches <span class="glyphicon glyphicon-cutlery"></span></h4>
-		<p>Bluegrass, Burgers and Beers. 2 Beers for the price of 1.</p>
-		<div class="btn-group-sm">
-			<button type="button" class="btn btn-default btn-lg">
-			 <span class="glyphicon glyphicon-heart-empty"></span> Love
-			</button>
-			<button type="button" class="btn btn-default btn-lg">
-			 <span class="glyphicon glyphicon-flash"></span> Not a fan
-			</button>
-			<button type="button" class="btn btn-default btn-lg">
-			 <span class="glyphicon glyphicon-star"></span> Want
-			</button>
-			<button type="button" class="btn btn-default btn-lg">
-			 <span class="glyphicon glyphicon-share"></span> Invite friends
-			</button>
-		</div>	  
-	  </div>
-	  </div>
-	</div>
+</div>
+	<% if @venue.deals.any? %>
+      <div class="deal-info">
+	    <h3 class="center">Current deals (<%= @venue.deals.count %>)</h3>
+  		<ul class="deals">
+	      <%= render @deals %>
+	    </ul>
+	  </div>   
+    <% else %>
+    <h3 class="center">Current deals</h3>
+      <p class="bg-info">This place has no deals for now, come back later!</p> 
+    <% end %>
+</div>
 </div>

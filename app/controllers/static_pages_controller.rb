@@ -11,12 +11,4 @@ class StaticPagesController < ApplicationController
   def terms
   end
 
-  def search
-
-    @venues = Venues.all
-    @hash = Gmaps4rails.build_markers(@venues) do |venue, marker|
-      marker.lat venue.latitude
-      marker.lng venue.longitude
-    end
-  end
 end
