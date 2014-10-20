@@ -1,6 +1,6 @@
 <% provide(:title, 'Add Venue') %>
-<h1>Add Venue</h1>
-<p>Create new venue using the form below:</p>
+<h1 class = "center">Add Venue</h1>
+<p class = "center">Create new venue using the form below:</p>
 <div class="form-container">
     <%= form_for(@venue, html: { role: "form" }) do |f| %>
 	  <%= render 'shared/error_messages', object: f.object %>

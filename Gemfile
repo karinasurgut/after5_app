@@ -14,6 +14,7 @@ gem 'autoprefixer-rails'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'geocoder'
+gem 'gmaps4rails'
 
 group :development, :test do
   gem 'rspec-rails', '2.13.1'

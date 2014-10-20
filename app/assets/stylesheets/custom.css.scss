@@ -7,11 +7,6 @@ html {
   overflow-y: scroll;
 }
 
-body {
-  padding-top: 50px;
-  padding-bottom: 20px;
-}
-
 section {
   overflow: auto;
 }
@@ -100,7 +95,7 @@ footer {
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
-  padding-top: 50px;
+  /*padding-top: 50px;*/
   padding-bottom: 20px;
 }
 
@@ -213,6 +208,10 @@ div.sb_dropdown{
 }
 
 /* miscellaneous */
+.form-container { 
+  max-width: 500px;
+  margin: 0 auto;
+}
 
 .debug_dump {
   clear: both;

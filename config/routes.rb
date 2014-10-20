@@ -7,6 +7,7 @@ After5::Application.routes.draw do
   match '/terms',        to: 'static_pages#terms',   via: 'get'
   match '/about',        to: 'static_pages#about',   via: 'get'
   match '/contact',      to: 'static_pages#contact', via: 'get'
+  match '/search',       to: 'static_pages#search',  via: 'get'
   #match '/venues/new',     to: 'venues#new',           via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
