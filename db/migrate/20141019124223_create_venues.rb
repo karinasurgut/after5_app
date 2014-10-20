@@ -1,13 +1,13 @@
 class CreateVenues < ActiveRecord::Migration
   def change
     create_table :venues do |t|
-      t.string :name
-      t.string :phone
-      t.string :email
-      t.string :street
-      t.string :suburb
-      t.string :region
-      t.string :website
+      t.string :name, default: "", unique: true
+      t.string :phone, default: ""
+      t.string :email, default: ""
+      t.string :street, default: ""
+      t.string :suburb, default: ""
+      t.string :region, default: ""
+      t.string :website, default: ""
 
       t.timestamps
     end

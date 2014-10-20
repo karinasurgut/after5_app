@@ -36,11 +36,10 @@ class VenuesController < ApplicationController
     redirect_to root_url
   end
 
-
   private
   	def venue_params
-  		params.require(:venue).permit(:name, :email, :street, :suburb, :postcode, :region,
-  									  :website, :phone)
+  		params.require(:venue).permit(:name, :email, :street, :suburb, :postcode, :region, :state, :country,
+  									  :website, :phone, :latitude, :longitude)
   	end
   	
   	def get_venue

@@ -35,9 +35,12 @@
           <p class="label label-success">Open today till 10pm</p>
 		  <%# if current_user.admin? %>
           <div>
-            <%= link_to "Edit Venue", edit_venue_path(@venue), class: "btn btn-default" %>
+            <%= link_to "Edit Venue", edit_venue_path(@venue) %>
+            <span> | </span>
             <%= render 'shared/delete_link', object: @venue %>
       	  </div>
+      	  <div>Latitude: <%= @venue.latitude %><br/>
+      	  	Longitude: <%= @venue.longitude %></div>
           <%# end %>
         </div>
         <div class="col-xs-6 col-sm-6">

@@ -40,6 +40,8 @@
       <%= f.label :region, "Area" %>
       <%= f.text_field :region, class: "form-control" %>
 	</div>
+		<%= f.hidden_field :state, placeholder: "NSW" %>
+      	<%= f.hidden_field :country, placeholder: "Australia" %>
       <%= f.submit "Create Venue", class: "btn btn-large btn-primary" %>
     <% end %>
 </div>

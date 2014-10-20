@@ -1,8 +1,7 @@
 module UsersHelper
 
-	def userpic_for(user, options = { size: 40 })
-    size = options[:size]
-    userpic = user.image
+  def userpic_for(user, type="small")
+  	userpic = user.image.split("=")[0] << "=#{type}"
     image_tag(userpic, alt: user.name, class: "img-circle userpic")
   end
 end

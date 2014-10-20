@@ -13,6 +13,7 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'autoprefixer-rails'
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'geocoder'
 
 group :development, :test do
   gem 'rspec-rails', '2.13.1'

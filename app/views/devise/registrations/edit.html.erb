@@ -1,66 +1,69 @@
 <% provide(:title, 'Edit Profile') %>
 <div class="row">
-  <div class="col-xs-6"><%= userpic_for(current_user) %></div>
-  <div class="col-xs-6"><h2>Edit <%= resource_name.to_s.humanize %></h2></div>
-</div>
-<div class="container-fluid profile-edit-subtitle">
-  <h3>About You</h3>
-</div>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form-horizontal" })  do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="form-group">
-    <%= f.label :email, class: "col-xs-2 control-label .col-xs-offset-2" %>
-    <div class="col-xs-10">
-      <%= f.email_field :email, autofocus: true %>
-    </div>
+  <div class="col-lg-6 center">
+    <%= userpic_for(current_user, "large") %>
+    <h1 class="center">Edit Profile<%#= resource_name.to_s.humanize %></h1>
   </div>
-
-  <div class="form-group">
-    <%= f.label :phone, class: "col-xs-2 control-label .col-xs-offset-2" %>
-    <div class="col-xs-10">
-      <%= f.text_field :phone %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :location, class: "col-xs-2 control-label .col-xs-offset-2" %>
-    <div class="col-xs-10">
-      <%= f.text_field :location %>
-    </div>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-  <% if current_user.admin? %>
-    <div class="form-group">
-      <%#= f.label :password, class: "col-xs-2 control-label .col-xs-offset-2" %> <i>(leave blank if you don't want to change it)</i>
-      <div class="col-xs-10">
-        <%#= f.password_field :password, autocomplete: "off" %>
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading center">
+        <h3 class="panel-title">About You</h3>
       </div>
-    </div>
-    <div class="form-group">
-      <%#= f.label :password_confirmation, class: "col-xs-2 control-label .col-xs-offset-2" %>
-      <div class="col-xs-10">
-        <%#= f.password_field :password_confirmation, autocomplete: "off" %>
-      </div>
-    </div>
+      <div class="panel-body">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form-horizontal" })  do |f| %>
+        <%= devise_error_messages! %>
 
-    <div class="form-group">
-      <%#= f.label :current_password, class: "col-xs-2 control-label .col-xs-offset-2" %> <i>(we need your current password to confirm your changes)</i><br />
-      <div class="col-xs-10">
-        <%#= f.password_field :current_password, autocomplete: "off" %>
+        <div class="form-group">
+          <%= f.label :email, class: "col-xs-3 control-label .col-xs-offset-3" %>
+          <div class="col-xs-8">
+            <%= f.email_field :email, autofocus: true, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :phone, class: "col-xs-3 control-label .col-xs-offset-3" %>
+          <div class="col-xs-8">
+            <%= f.text_field :phone, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :location, class: "col-xs-3 control-label .col-xs-offset-3" %>
+          <div class="col-xs-8">
+            <%= f.text_field :location, class: "form-control" %>
+          </div>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+        <% if current_user.admin? %>
+          <div class="form-group">
+            <%#= f.label :password, class: "col-xs-3 control-label .col-xs-offset-3" %> <i>(leave blank if you don't want to change it)</i>
+            <div class="col-xs-10">
+              <%#= f.password_field :password, autocomplete: "off" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%#= f.label :password_confirmation, class: "col-xs-3 control-label .col-xs-offset-3" %>
+            <div class="col-xs-10">
+              <%#= f.password_field :password_confirmation, autocomplete: "off" %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%#= f.label :current_password, class: "col-xs-3 control-label .col-xs-offset-3" %> <i>(we need your current password to confirm your changes)</i><br />
+            <div class="col-xs-10">
+              <%#= f.password_field :current_password, autocomplete: "off" %>
+            </div>
+          </div>
+        <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
-  <div class="form-group row">
-    <div class="col-xs-5">
-      <%= link_to "Back", user_path(current_user), class: "btn btn-default" %>
-    </div>
-    <div class="col-xs-5">
-      <%= f.submit "Update", class: "btn btn-info" %>
-    </div>
-  </div>
-<% end %>
+      <div class="row center">
+        <div class="col-xs-6"><%= link_to "Back", user_path(current_user), class: "btn btn-info" %></div>
+        <div class="col-xs-6"><%= f.submit "Update", class: "btn btn-success" %></div>
+      </div>
+      <% end %>   
+   </div>
+  </div>   
