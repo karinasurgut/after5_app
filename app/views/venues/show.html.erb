@@ -14,7 +14,26 @@
           <p><%= @venue.street %><br/>
           <%= @venue.suburb %> <%= @venue.postcode %><br/>
           Ph: <%= @venue.phone %></p>
-          <p class="label label-success">Open today till 10pm</p>
+          <%= today_hours(@venue) %>
+          <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#demo">
+            See hours
+          </button>
+
+          <div id="demo" class="collapse">
+            <ul>
+              <% for hour in @venue.hours %>
+              <li>
+                <% unless hour.closed? %>
+                  <%= h Date::DAYNAMES[hour.day] + ": " + hour.open_time.strftime("%I:%M %p").to_s + " to " + hour.close_time.strftime("%I:%M %p").to_s %>
+                <% else %>
+                  <%= Date::DAYNAMES[hour.day] + ": " + "Closed" %>
+                <% end %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+
+
 		  <%# if current_user.admin? %>
           <div>
             <%= link_to "Edit Venue", edit_venue_path(@venue) %>

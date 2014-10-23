@@ -3,6 +3,10 @@ class VenuesController < ApplicationController
   before_action :get_venue, except: [:index, :create, :new, :destroy]
   def new
   	@venue = Venue.new
+    days = [1,2,3,4,5,6,0]
+    days.each do |d|
+      @venue.hours.build(day: d)
+    end
   end
   
   def index
@@ -15,6 +19,7 @@ class VenuesController < ApplicationController
 
   def show
     @deals = @venue.deals
+    @hours = @venue.hours.all
   end
   
   def create
@@ -28,14 +33,19 @@ class VenuesController < ApplicationController
   end
 
   def edit
+    #@hours = @venue.hours.find(params[:id])
   end
 
   def update  	
-  	if @venue.update_attributes(venue_params)
-      flash[:success] = "Venue updated"
-      redirect_to @venue
-    else
-      render 'edit'
+  	allhours = @venue.hours.all #find(params[:id])
+    allhours.each do |h|
+      @venue.hours.find_by(id: params[:id])
+      if @venue.update_attributes(venue_params)
+        flash[:success] = "Venue updated"
+        redirect_to @venue
+      else
+        render 'edit'
+      end
     end
   end
 
@@ -47,10 +57,12 @@ class VenuesController < ApplicationController
 
   private
   	def venue_params
-  		params.require(:venue).permit(:name, :email, :street, :suburb, :postcode, :region, :state, :country,
-  									  :website, :phone, :latitude, :longitude)
+  		params.require(:venue).permit(:name, :email, :street, :suburb, 
+                                    :postcode, :region, :state, :country,
+  									               :website, :phone, :latitude, :longitude, 
+                                   hours_attributes: [:id, :venue_id, :day, :open_time, :close_time, :closed])
   	end
-  	
+
   	def get_venue
       @venue = Venue.where(id: params[:id]).first
       redirect_to(root_url) if @venue.nil?

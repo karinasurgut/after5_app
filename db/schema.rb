@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020150459) do
+ActiveRecord::Schema.define(version: 20141023102518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,19 @@ ActiveRecord::Schema.define(version: 20141020150459) do
   end
 
   add_index "deals", ["venue_id"], name: "index_deals_on_venue_id", using: :btree
+
+  create_table "hours", force: true do |t|
+    t.integer  "venue_id"
+    t.integer  "day"
+    t.time     "open_time"
+    t.time     "close_time"
+    t.boolean  "closed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hours", ["venue_id", "day"], name: "index_hours_on_venue_id_and_day", using: :btree
+  add_index "hours", ["venue_id"], name: "index_hours_on_venue_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
