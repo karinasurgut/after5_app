@@ -2,7 +2,14 @@ After5::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }#, :path_prefix => 'd'
   resources :users, only: :show
   resources :venues
-  resources :deals, except: [:new, :show, :index]
+  resources :deals, except: [:new, :show, :index] do
+    member do
+      put "like", to: "deals#upvote"
+      put "dislike", to: "deals#downvote"
+      put "fave", to: "deals#want"
+      end
+    end
+      
   root  'static_pages#home'
   match '/users/:id',    to: 'users#show', as: @user,        via: 'get'
   match '/terms',        to: 'static_pages#terms',   via: 'get'

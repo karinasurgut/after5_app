@@ -12,6 +12,5 @@ module UsersHelper
 
   def cur_location
     cur_location = cookies[:cur_geo]
-
   end 
 end

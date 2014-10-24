@@ -1,8 +1,20 @@
 <li>
  <div class="panel panel-default panel-deal">
   <div class="panel-body">
-	<h3 style="color:red;"><%= deal.title %></h3>
-	<h4><%= deal.venue.name %> <span class="glyphicon glyphicon-cutlery"></span></h4>
+  	<div class="row">
+  		<div class="col-xs-8">
+	  		<h3 style="color:red;"><%= deal.title %></h3>
+		</div>
+		<div class="col-xs-4">
+	  		<% if deal.score > 0 %>
+	  		<p style = "color:red;">Rating: <%= deal.score %></p>
+	  		<% end %>
+	  		<% if deal.userlikes > 0 %>
+	  		<p style = "color:red;">Likes: <%= deal.userlikes if deal.userlikes > 0%></p>
+	  		<% end %>
+		</div>
+	</div>
+	<h4><%= deal.venue.name %> <span class="glyphicon glyphicon-cutlery"></span>  <%#= today_hours(deal.venue) %></h4>
 	<p><%= deal.content %><br/>
 	<%# if current_user.admin? %>
       <%= link_to "edit", edit_deal_path(deal) %>
@@ -13,13 +25,13 @@
     <%# end %></p>
 	<div class="btn-group-sm">
 		<button type="button" class="btn btn-default btn-lg">
-		 <span class="glyphicon glyphicon-heart-empty"></span> Love
+		 <span class="glyphicon glyphicon-heart-empty"></span> <%= link_to "Love", like_deal_path(deal), method: :put %>
 		</button>
 		<button type="button" class="btn btn-default btn-lg">
-		 <span class="glyphicon glyphicon-flash"></span> Not a fan
+		 <span class="glyphicon glyphicon-flash"></span> <%= link_to "Not a fan", dislike_deal_path(deal), method: :put %>
 		</button>
 		<button type="button" class="btn btn-default btn-lg">
-		 <span class="glyphicon glyphicon-star"></span> Want
+		 <span class="glyphicon glyphicon-star"></span> <%= link_to "Want", fave_deal_path(deal), method: :put %>
 		</button>
 		<button type="button" class="btn btn-default btn-lg">
 		 <span class="glyphicon glyphicon-share"></span> Tell friends

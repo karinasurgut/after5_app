@@ -42,6 +42,24 @@ end
     end
   end
 
+  def upvote
+    @deal = Deal.find(params[:id])
+    @deal.upvote_by current_user
+    redirect_to venue_path(@deal.venue)
+  end
+
+  def downvote
+    @deal = Deal.find(params[:id])
+    @deal.downvote_by current_user
+    redirect_to venue_path(@deal.venue)
+  end
+
+  def want
+    @deal = Deal.find(params[:id])
+    @deal.liked_by current_user
+    redirect_to venue_path(@deal.venue)
+  end
+
   private
 
     def deal_params

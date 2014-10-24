@@ -15,6 +15,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'geocoder'
 gem 'gmaps4rails'
+gem 'acts_as_votable', '~> 0.10.0'
 
 group :development, :test do
   gem 'rspec-rails', '2.13.1'
