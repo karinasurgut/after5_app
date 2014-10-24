@@ -49,13 +49,13 @@
 		      <div class="clearfix visible-xs-block"></div>
 		      <div class="col-xs-12 col-sm-8 col-xs-offset-1 col-sm-offset-0">
 		      	<%#= builder.label :open_time, " from" %>
-		        <%= builder.time_select :open_time, minute_step: 30, ampm:true, ignore_date:true, include_blank:true %>
+		        <%= builder.time_select :open_time, minute_step: 30, ampm:true, ignore_date:true, include_blank:true, class: "timeSelect1" %>
 		        <%= builder.label :close_time, " till " %>
-		        <%= builder.time_select :close_time, minute_step: 30, ampm:true, ignore_date:true, include_blank:true %>
+		        <%= builder.time_select :close_time, minute_step: 30, ampm:true, ignore_date:true, include_blank:true, class: "timeSelect2" %>
 		      </div>
 		      <div class="clearfix visible-xs-block"></div>
 		      <div class="col-xs-12 col-sm-3 col-xs-offset-1 col-sm-offset-0">
-		      	<%= builder.check_box :closed %><%= builder.label :closed, "Closed", class: "label-closed" %>
+		      	<%= builder.check_box :closed, class: "checkboxClosed" %><%= builder.label :closed, "Closed", class: "label-closed" %>
 		      </div>
 		   </div>
 	  <% end %>
@@ -63,4 +63,26 @@
 
       <%= f.submit "Save changes", class: "btn btn-large btn-primary btn-block" %>
     <% end %>
-</div>
+</div>	
+<script>
+	$(document).ready(function () {
+      $("input[type=checkbox]").each(function (index,cbItem) {
+        $(this).change(function () {
+        if ($(this).is(":checked")) {
+          $("#venue_hours_attributes_"+ index + "_open_time_4i").prop('disabled', 'disabled');
+          $("#venue_hours_attributes_"+ index + "_open_time_5i").prop('disabled', 'disabled');
+          $("#venue_hours_attributes_"+ index + "_close_time_4i").prop('disabled', 'disabled');
+          $("#venue_hours_attributes_"+ index + "_close_time_5i").prop('disabled', 'disabled');
+ 		  //console.log("diabled fields");
+        }
+        else {
+    	$("#venue_hours_attributes_"+ index + "_open_time_4i").prop('disabled', false);
+		$("#venue_hours_attributes_"+ index + "_open_time_5i").prop('disabled', false);
+		$("#venue_hours_attributes_"+ index + "_close_time_4i").prop('disabled', false);
+		$("#venue_hours_attributes_"+ index + "_close_time_5i").prop('disabled', false);
+    	//console.log(sb1);  
+        }
+        });
+      });
+    });
+</script>

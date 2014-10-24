@@ -37,16 +37,16 @@ class VenuesController < ApplicationController
   end
 
   def update  	
-  	allhours = @venue.hours.all #find(params[:id])
-    allhours.each do |h|
-      @venue.hours.find_by(id: params[:id])
+  	#allhours = @venue.hours.all #find(params[:id])
+    #allhours.each do |h|
+      #@venue.hours.find_by(id: params[:id])
       if @venue.update_attributes(venue_params)
         flash[:success] = "Venue updated"
         redirect_to @venue
       else
         render 'edit'
       end
-    end
+    #end
   end
 
   def destroy

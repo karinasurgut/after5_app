@@ -6,10 +6,10 @@ module VenuesHelper
 	def today_hours(venue)
 		today = Date.today.wday
 	    today_venue = @venue.hours.find_by(day: today)
-	    today_open = today_venue.open_time
-	    today_close = today_venue.close_time
 	    unless today_venue.closed?
-	    	content_tag("span", "Open today from #{today_open} till #{today_close}", class: "label label-success")
+	    	today_open = today_venue.open_time.strftime("%I:%M %p").to_s.downcase!
+	    	today_close = today_venue.close_time.strftime("%I:%M %p").to_s.downcase!    
+	    	content_tag("span", "Open today #{today_open} to #{today_close}", class: "label label-success")
 	    else
 	    	content_tag("span", "Closed today", class: "label label-danger")
 	    end

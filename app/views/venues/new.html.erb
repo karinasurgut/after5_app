@@ -58,11 +58,33 @@
 		      </div>
 		      <div class="clearfix visible-xs-block"></div>
 		      <div class="col-xs-12 col-sm-3 col-xs-offset-1 col-sm-offset-0">
-		      	<%= builder.check_box :closed %><%= builder.label :closed, "Closed", class: "label-closed" %>
+		      	<%= builder.check_box :closed, class: "checkboxClosed" %><%= builder.label :closed, "Closed", class: "label-closed" %>
 		      </div>
 		   </div>
 	  <% end %>
 	 <!--Opening hours information section-->
-      <%= f.submit "Create Venue", class: "btn btn-large btn-primary btn-block", data: { :'loading_text' => "Saving..." } %>
+      <%= f.submit "Create Venue", class: "btn btn-large btn-primary btn-block", id: "loading-btn", data: { :'loading_text' => "Saving..." } %>
     <% end %>
 </div>
+<script>
+	$(document).ready(function () {
+      $("input[type=checkbox]").each(function (index,cbItem) {
+        $(this).change(function () {
+        if ($(this).is(":checked")) {
+          $("#venue_hours_attributes_"+ index + "_open_time_4i").prop('disabled', 'disabled');
+          $("#venue_hours_attributes_"+ index + "_open_time_5i").prop('disabled', 'disabled');
+          $("#venue_hours_attributes_"+ index + "_close_time_4i").prop('disabled', 'disabled');
+          $("#venue_hours_attributes_"+ index + "_close_time_5i").prop('disabled', 'disabled');
+ 		  //console.log("diabled fields");
+        }
+        else {
+    	$("#venue_hours_attributes_"+ index + "_open_time_4i").prop('disabled', false);
+		$("#venue_hours_attributes_"+ index + "_open_time_5i").prop('disabled', false);
+		$("#venue_hours_attributes_"+ index + "_close_time_4i").prop('disabled', false);
+		$("#venue_hours_attributes_"+ index + "_close_time_5i").prop('disabled', false);
+    	//console.log(sb1);  
+        }
+        });
+      });
+    });
+</script>

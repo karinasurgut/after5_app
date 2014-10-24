@@ -99,6 +99,11 @@ body {
   padding-bottom: 20px;
 }
 
+h1.home-title {
+  color:#9d394f;
+  font-size: 1.7em;
+}
+
 .left-date{
 	font-size: 4em;
 	color: #0AB1FF;
@@ -132,6 +137,10 @@ padding: 0px;
 margin-bottom: 0;
 color: inherit;
 background-color: #00b3e5;
+  p {
+    font-size:16px;
+    margin-bottom:10px;
+  }
 }
 
 .featured div img{
