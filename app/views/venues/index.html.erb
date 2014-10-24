@@ -1,7 +1,9 @@
 <% provide(:title, 'All venues') %>
 <h1>All venues</h1>
+<div class="container">
 <ul class="venues">
   <% @venues.each do |venue| %>
     <%= render venue %>
   <% end %>
 </ul>
+</div>

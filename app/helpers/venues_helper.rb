@@ -14,4 +14,16 @@ module VenuesHelper
 	    	content_tag("span", "Closed today", class: "label label-danger")
 	    end
 	end
+
+	def imagefile_for(venue)
+  	  imagefile = @venue.image
+    end
+
+    def online_contacts_for(venue)
+    	website = @venue.website
+    	email = @venue.email
+    	web_link = link_to "Website", website, class: "", alt: "#{@venue.name} Website"
+    	email_link = mail_to email, "Email", class: "", alt: "Email #{@venue.name}"
+    	online_contacts = web_link + " | " + email_link
+    end
 end

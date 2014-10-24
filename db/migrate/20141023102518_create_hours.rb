@@ -12,5 +12,6 @@ class CreateHours < ActiveRecord::Migration
 
     add_index :hours, [:venue_id, :day]
     add_index :hours, :venue_id
+    add_index :hours, [:venue_id, :created_at]
   end
 end
