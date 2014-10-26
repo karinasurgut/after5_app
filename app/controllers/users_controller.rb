@@ -44,14 +44,40 @@ class UsersController < ApplicationController
     @checkin_items = current_user.checkins_list
   end
 
+  def interests
+    @user = User.find(params[:id])
+  end
+
+  def create_interests
+    @user = User.find(params[:id])
+    @user.interest_list = params[:interest_list]
+    @user.save
+  end
+
+  def update_interests
+    @user = User.find(params[:id])
+    #if @user.update_attributes(user_params)
+    interests = ""
+    params[:interest_list].each do |k,v|
+      interests += v.join(', ')
+    end
+    if @user.update_attributes(interest_list: interests)
+        flash[:success] = "Interests updated!"
+        redirect_to @user
+      else
+        render 'interests'
+      end
+  end
+
   private
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end
 
   	def user_params
-  		params.require(:user).permit(:name, :email, :password, :phone, :location, 
-  									:password_confirmation)
+  		params.require(:user).permit(:name, :email, :password, :phone, 
+                                   :location, :interest_list, 
+                                   :password_confirmation)
   	end
 
     # Before filters

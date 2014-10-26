@@ -1,0 +1,29 @@
+<% provide(:title, 'Likes') %>
+<h1 class = "center">What stuff do you like?</h1>
+<p class = "center">Tell us what you like so we can find the best deals for your taste:</p>
+<div class="form-container">
+    <%= form_for(:interest_list, html: { role: "form" }, url: interests_user_path(@user)) do |f| %>
+      <div class="form-group center" data-toggle="buttons">
+      <!--   <div class="sb_dropdown" style="display:none;" data-toggle="buttons">
+ <li class="sb_filter">Filter your search</li>-->
+  <!--<li><input type="checkbox"><label for="all"><strong>All Categories</strong></label></li>
+  <label for="wine" class="btn btn-primary"><input type="checkbox">wine</label>
+  <label for="rooftop" class="btn btn-primary"><input type="checkbox">rooftop</label>
+  <label for="karaoke" class="btn btn-primary" ><input type="checkbox">karaoke</label>
+  <label for="rum" class="btn btn-primary"><input type="checkbox">rum</label>       
+</div>-->
+        <%= f.label :interest_list, class: "hidden" %>
+        <% labels = ["Pub", "Gastropub", "Footy", "Aussie", "TAB", "Pokies", "Fireplace", "Beer Garden", "Bistro", "Pool Table", "Modern Australian", "Outdoor Dining", "Kid-Friendly", "Families", "Dance Floor", "Gastro Pub", "Live Music", "Wine Bar", "Tapas", "Italian", "Pizza", "Outdoor Seating", "Cocktails", "Funky", "Trivia", "Modern", "Dive Bar", "Cocktails", "Craft Beer", "Courtyard", "Irish Pub", "Guiness", "Breakfast All Day", "Karaoke", "Pool", "Craft Cocktails", "Lounge", "Sophisticated", "Trendy", "Soul Food", "New Orleans", "American", "Themed", "Retro", "Balcony", "Homemade Soda", "Greek", "AFL","Rooftop"] %>
+        <% labels.each do |l| %>
+          <% unless @user.interest_list.include?(l) %>
+            <label for="#{l}" class="btn btn-default"><%= f.check_box :interest_list, { :multiple => true }, "#{l}", nil %> <%= l %></label>
+          <% else %>
+            <label for="#{l}" class="btn btn-default active"><%= f.check_box :interest_list, { :multiple => true, :checked => true }, "#{l}", nil %> <%= l %></label>
+          <% end %>
+      		<%#= f.check_box :interest_list, { :multiple => true }, 'Pizza', nil %>
+        <% end %>
+        <%#= f.text_field :interest_list, class: "form-control", placeholder: "e.g. rooftop, gastropub,..." %>
+      </div>
+      <%= f.submit "Save", class: "btn btn-large btn-primary btn-block", id: "loading-btn", data: { :'loading_text' => "Saving..." } %>
+    <% end %>
+</div>

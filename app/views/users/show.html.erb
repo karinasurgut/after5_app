@@ -17,12 +17,8 @@
       </div>
 	  <div class="user-tags">
 		<h3>You Like...</h3>
-		<h4><span class="label label-info">Beer</span>
-		<span class="label label-info">Rooftops</span>
-		<span class="label label-info">Gin</span>
-		<span class="label label-info">Steak</span>
-		<span class="label label-info">Burger</span>
-		<%= link_to "Add+", '#', class: "label label-info" %></h4>			
+		<h4><%= raw @user.interest_list.map { |t| content_tag("span", t, class: "label label-success") }.join(' ') %>
+		<%= link_to "+ Add", interests_user_path(@user), class: "label label-info" %></h4></h4>			
 	  </div>
 	</div>
   </div>

@@ -1,6 +1,12 @@
 After5::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }
-  resources :users, only: :show
+  resources :users, only: [:show, :interests] do
+    member do
+      #put "interests", to: "users#create_interests"
+      post "interests", to: "users#update_interests"
+      patch "interests", to: "users#update_interests"
+    end
+  end
   resources :venues
   resources :deals, except: [:new, :show, :index] do
     member do
@@ -16,13 +22,14 @@ After5::Application.routes.draw do
   match '/users/:id/checkins', to: 'users#checkins',       as: :user_checkins,   via: 'get'
   match '/users/:id/wishlist', to: 'users#wishlist',       as: :user_wishlist,   via: 'get'
   match '/users/:id/visited',  to: 'users#visited',        as: :user_visited,    via: 'get'
+  match '/users/:id/interests',to: 'users#interests',      as: :user_interests,  via: 'get'
   match '/terms',              to: 'static_pages#terms',                         via: 'get'
   match '/about',              to: 'static_pages#about',                         via: 'get'
   match '/contact',            to: 'static_pages#contact',                       via: 'get'
   match '/search',             to: 'deals#search',                               via: 'get'
   match '/venues/:id/new',     to: 'venues#deal',          as: :new_deal,        via: 'get'
   match 'deals/tags/:tag',           to: 'deals#search',   as: :tag,             via: 'get'
-  match 'venues/tags/:tag',           to: 'venues#index', as: :venue_tag,       via: 'get'
+  match 'venues/tags/:tag',           to: 'venues#index',  as: :venue_tag,       via: 'get'
   #match '/venues/new',     to: 'venues#new',           via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
