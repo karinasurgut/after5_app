@@ -9,7 +9,7 @@ module VenuesHelper
 	    unless today_venue.closed?
 	    	today_open = today_venue.open_time.strftime("%I:%M %p").to_s.downcase!
 	    	today_close = today_venue.close_time.strftime("%I:%M %p").to_s.downcase!    
-	    	content_tag("span", "Open today #{today_open} to #{today_close}", class: "label label-success")
+	    	content_tag("span", "Open today #{today_open} to #{today_close}", class: "label label-success", data: { :'toggle' => "collapse", :'target' => "#demo" })
 	    else
 	    	content_tag("span", "Closed today", class: "label label-danger", data: { :'toggle' => "collapse", :'target' => "#demo" })
 	    end
@@ -25,5 +25,13 @@ module VenuesHelper
     	web_link = link_to "Website", website, class: "", alt: "#{@venue.name} Website"
     	email_link = mail_to email, "Email", class: "", alt: "Email #{@venue.name}"
     	online_contacts = web_link + " | " + email_link
+    end
+
+    def venue_index_title
+    	if params[:tag]
+	      @pagetitle = "Venues tagged " + params[:tag]
+	    else
+	      @pagetitle = "All Venues"
+	    end  
     end
 end

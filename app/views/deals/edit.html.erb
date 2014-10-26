@@ -1,6 +1,6 @@
 <% provide(:title, 'Edit Deal') %>
 <h1 class = "center">Edit Deal</h1>
-<p class = "center">Create new deal for the <%= @venue.name %> using the form below:</p>
+<p class = "center">Edit this deal for the <%= @venue.name %> using the form below:</p>
 <div class="form-container">
     <%= form_for(@deal, html: { role: "form" }) do |f| %>
 	  <%= render 'shared/error_messages', object: f.object %>
@@ -12,6 +12,10 @@
       <%= f.label :content, "Description" %>
       <%= f.text_field :content, class: "form-control" %>
 	</div>
+  <div class="form-group">
+      <%= f.label :tag_list, "Tags (separated by commas)" %>
+      <%= f.text_field :tag_list, class: "form-control" %>
+  </div>   
       <%= f.submit "Save Changes", class: "btn btn-large btn-primary" %>
     <% end %>
 </div>

@@ -1,6 +1,7 @@
 class Deal < ActiveRecord::Base
 	belongs_to :venue
 	acts_as_votable
+	acts_as_taggable
 	#has_many :dealhours
 	#has_many :hours, through: :dealhours
 	validates :venue_id, presence: true

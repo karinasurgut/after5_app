@@ -12,15 +12,17 @@ After5::Application.routes.draw do
     end
   resources :checkins, only: :create
   root  'static_pages#home'
-  match '/users/:id',          to: 'users#show',           as: @user,        via: 'get'
-  match '/users/:id/checkins', to: 'users#checkins',       as: :user_checkins,        via: 'get'
-  match '/users/:id/wishlist', to: 'users#wishlist',       as: :user_wishlist,        via: 'get'
-  match '/users/:id/visited',  to: 'users#visited',        as: :user_visited,        via: 'get'
-  match '/terms',              to: 'static_pages#terms',                     via: 'get'
-  match '/about',              to: 'static_pages#about',                     via: 'get'
-  match '/contact',            to: 'static_pages#contact',                   via: 'get'
-  match '/search',             to: 'deals#search',                           via: 'get'
-  match '/venues/:id/new',     to: 'venues#deal',          as: :new_deal,    via: 'get'
+  match '/users/:id',          to: 'users#show',           as: @user,            via: 'get'
+  match '/users/:id/checkins', to: 'users#checkins',       as: :user_checkins,   via: 'get'
+  match '/users/:id/wishlist', to: 'users#wishlist',       as: :user_wishlist,   via: 'get'
+  match '/users/:id/visited',  to: 'users#visited',        as: :user_visited,    via: 'get'
+  match '/terms',              to: 'static_pages#terms',                         via: 'get'
+  match '/about',              to: 'static_pages#about',                         via: 'get'
+  match '/contact',            to: 'static_pages#contact',                       via: 'get'
+  match '/search',             to: 'deals#search',                               via: 'get'
+  match '/venues/:id/new',     to: 'venues#deal',          as: :new_deal,        via: 'get'
+  match 'deals/tags/:tag',           to: 'deals#search',   as: :tag,             via: 'get'
+  match 'venues/tags/:tag',           to: 'venues#index', as: :venue_tag,       via: 'get'
   #match '/venues/new',     to: 'venues#new',           via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

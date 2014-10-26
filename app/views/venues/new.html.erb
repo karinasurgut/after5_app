@@ -46,6 +46,10 @@
 	</div>
 	  <%= f.hidden_field :state, placeholder: "NSW" %>
       <%= f.hidden_field :country, placeholder: "Australia" %>
+    <div class="form-group">
+      <%= f.label :tag_list, "Venue Tags (separated by commas)" %>
+      <%= f.text_field :tag_list, class: "form-control", placeholder: "e.g. rooftop, gastropub,..." %>
+    </div>
     <!--Opening hours information section-->
 	  <h4>Opening Hours</h4>
 	  <%= f.fields_for :hours, html: { class: "form-horizontal" } do |builder| %>

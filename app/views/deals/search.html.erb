@@ -46,13 +46,13 @@
   </div>
 </div>
 <div class = "row">
-  <div class ="col-lg-6 center">
+  <div class ="col-lg-4 center">
   	<div style='width: 400px;'>
   		<div id="map" style='width: 400px; height: 400px;'></div>
 	</div>
   </div>
-  <div class ="col-lg-6 center">
-	<div class="container">
+  <div class ="col-lg-6">
+	<div class="">
 		<p>Sort by: <span class="label label-info">Today ></span>
 		      <span class="label label-default">+ Near you</span>
 		      <span class="label label-success">+ Price</span>
@@ -61,6 +61,9 @@
 	    <a href="#"><button type="button" class="btn btn-default btn-sm">List View</button></a>
 	    <a href = "#"><button type="button" class="btn btn-primary btn-sm">Map View</button></a></p>
 	    <h3>SEARCH RESULTS</h3>
+	    <% @deals.each do |deal| %>  
+	      <%= render deal %>
+	    <% end %>
 	</div>
   </div>
 </div>

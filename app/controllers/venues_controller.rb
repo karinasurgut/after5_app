@@ -10,7 +10,11 @@ class VenuesController < ApplicationController
   end
   
   def index
-   @venues = Venue.all
+   if params[:tag]
+      @venues = Venue.tagged_with(params[:tag])
+    else
+      @venues= Venue.all
+    end  
   end
 
   def deal 
@@ -59,7 +63,7 @@ class VenuesController < ApplicationController
   	def venue_params
   		params.require(:venue).permit(:name, :email, :image, :street, :suburb, 
                                     :postcode, :region, :state, :country,
-  									               :website, :phone, :latitude, :longitude, 
+  									               :website, :phone, :latitude, :longitude, :tag_list,
                                    hours_attributes: [:id, :venue_id, :day, :open_time, :close_time, :closed])
   	end
 

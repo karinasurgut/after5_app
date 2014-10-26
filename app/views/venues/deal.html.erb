@@ -12,6 +12,11 @@
       <%= f.label :content, "Description" %>
       <%= f.text_field :content, class: "form-control", placeholder: "Enter more detailed description" %>
 	</div>
+  <div class="form-group">
+      <%= f.label :tag_list, "Tags (separated by commas)" %>
+      <%= f.text_field :tag_list, class: "form-control" %>
+  </div>    
+
       <%= f.hidden_field :venue_id, placeholder: "#{@venue.id}", class: "form-control" %>
       <%= f.submit "Create Deal", class: "btn btn-large btn-primary" %>
     <% end %>

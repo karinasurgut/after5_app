@@ -2,6 +2,7 @@
 <div class="col-sm-6 col-lg-3 col-md-4">
   <%= image_tag("#{venue.image}", alt:'', style:'width:250px;', class:'img-rounded thumbnail') %>
   <h3><%= link_to venue.name, venue %></h3>
+  <p><%= raw venue.tag_list.map { |t| link_to "#" + t, venue_tag_path(t) }.join(' ') %>
   <%# if current_user.admin? %>
           <div>
             <%= link_to "Edit Venue", edit_venue_path(venue) %>

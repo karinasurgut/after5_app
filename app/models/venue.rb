@@ -2,6 +2,7 @@ class Venue < ActiveRecord::Base
 	has_many :deals, dependent: :destroy
 	has_many :hours, dependent: :destroy, foreign_key: "venue_id"
 	accepts_nested_attributes_for :hours, limit: 7
+	acts_as_taggable
 	before_save do
 	  email.downcase!
 	  street.split.map(&:downcase).map(&:capitalize).join(' ')

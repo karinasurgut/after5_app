@@ -16,20 +16,23 @@
           <%= @venue.suburb %> <%= @venue.postcode %><br/>
           Ph: <%= @venue.phone %><br/>
           <%= online_contacts_for(@venue) %></p>
-          <%= today_hours(@venue) %>
-          <div id="demo" class="collapse today-hours">
-            <ul>
-              <% for hour in @venue.hours %>
-              <li>
-                <% unless hour.closed? %>
-                  <%= h Date::DAYNAMES[hour.day][0..2] + ": " + hour.open_time.strftime("%I:%M %p").to_s + " to " + hour.close_time.strftime("%I:%M %p").to_s %>
-                <% else %>
-                  <%= Date::DAYNAMES[hour.day][0..2] + ": " + "Closed" %>
+          <p><%= raw @venue.tag_list.map { |t| link_to "#" + t, venue_tag_path(t) }.join(' ') %>
+          <% if @venue.hours.any? %>
+            <%= today_hours(@venue) %>
+            <div id="demo" class="collapse today-hours">
+              <ul>
+                <% for hour in @venue.hours %>
+                <li>
+                  <% unless hour.closed? %>
+                    <%= h Date::DAYNAMES[hour.day][0..2] + ": " + hour.open_time.strftime("%I:%M %p").to_s + " to " + hour.close_time.strftime("%I:%M %p").to_s %>
+                  <% else %>
+                    <%= Date::DAYNAMES[hour.day][0..2] + ": " + "Closed" %>
+                  <% end %>
+                </li>
                 <% end %>
-              </li>
-              <% end %>
-            </ul>
-          </div>
+              </ul>
+            </div>
+          <% end %>
 		  <%# if current_user.admin? %>
           <div>
             <%= link_to "Edit Venue", edit_venue_path(@venue) %>

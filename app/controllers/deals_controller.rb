@@ -14,7 +14,12 @@ class DealsController < ApplicationController
   end
 
  def search  
-    @deals= Deal.all
+    if params[:tag]
+      @deals = Deal.tagged_with(params[:tag])
+    else
+      @deals= Deal.all
+    end  
+    
     @hash = Gmaps4rails.build_markers(@deals) do |deal, marker|
       marker.lat deal.venue.latitude
       marker.lng deal.venue.longitude
@@ -30,10 +35,12 @@ end
   end
 
   def edit
-
+    @deal = Deal.find(params[:id])
+    @venue = @deal.venue
   end
 
   def update
+    @deal = Deal.find(params[:id])
     if @deal.update_attributes(deal_params)
       flash[:success] = "Deal updated"
       redirect_to root_url
@@ -76,7 +83,7 @@ end
   private
 
     def deal_params
-      params.require(:deal).permit(:content, :title, :venue_id, 
+      params.require(:deal).permit(:content, :title, :venue_id, :tag_list,
                                   checkins_attributes: [:deal_id, :user_id])
     end
 
