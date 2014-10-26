@@ -1,0 +1,19 @@
+<% provide(:title, "Wishlist") %>
+<div class="row">	  
+  <div class="col-lg-6 center">
+    <%= userpic_for(@user,"large") %><br/>
+    <h1 class="center">
+      <%= @user.name %>
+    </h1>
+  </div> 
+  <div class="col-lg-6">
+	<h3>Venues you've been to</h3>
+  	<ul class="deals">
+  		<% spots = unique_venues_visited(@user) %>
+  		<% spots.each do |spot| %>
+        <% v = Venue.find_by(id: spot) %>
+    		  <%= render partial: 'venues/venue', locals: {venue: v} %>
+  		<% end %>
+	  </ul>
+  </div>
+</div>

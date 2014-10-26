@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141024132224) do
+ActiveRecord::Schema.define(version: 20141026130351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checkins", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "deal_id"
+  end
+
+  add_index "checkins", ["created_at"], name: "index_checkins_on_created_at", using: :btree
+  add_index "checkins", ["deal_id"], name: "index_checkins_on_deal_id", using: :btree
+  add_index "checkins", ["user_id", "created_at"], name: "index_checkins_on_user_id_and_created_at", using: :btree
+  add_index "checkins", ["user_id", "deal_id"], name: "index_checkins_on_user_id_and_deal_id", using: :btree
+  add_index "checkins", ["user_id"], name: "index_checkins_on_user_id", using: :btree
 
   create_table "deals", force: true do |t|
     t.string   "title"

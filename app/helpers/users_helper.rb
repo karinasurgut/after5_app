@@ -13,4 +13,22 @@ module UsersHelper
   def cur_location
     cur_location = cookies[:cur_geo]
   end 
+
+  def unique_venues_visited(user)
+    visited = user.checkins.select(:deal_id).map(&:deal_id).uniq
+    spots = []
+    visited.each do |v|
+      spot = Deal.find_by(id: v).venue_id
+      unless spots.include?(spot)
+        spots << spot
+      end
+    end
+    spots
+  end
+
+  def unique_venues_visited_count(user)
+    spots = unique_venues_visited(user)
+    spots.count
+  end
+
 end

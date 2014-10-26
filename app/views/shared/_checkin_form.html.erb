@@ -1,0 +1,9 @@
+<%# unless current_user == User.get%>
+  <div id="checkin_form">
+    <%= form_for(@checkin) do |f| %>
+      <div><%= f.hidden_field :deal_id %></div>
+      <div><%= f.hidden_field :user_id %></div>
+      <%= f.submit "Here now?", class: "btn btn-lg btn-info" %>
+    <% end %>
+  </div>
+<%# end %>

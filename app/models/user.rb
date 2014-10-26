@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
+  has_many :checkins
+  has_many :deals, through: :checkins
   acts_as_voter
 
   def self.from_omniauth(auth)
@@ -17,5 +19,9 @@ class User < ActiveRecord::Base
 
   def totalrateddeals
     self.votes.size
+  end
+
+  def checkins_list
+    Deal.from_checkins_by(self)
   end
 end

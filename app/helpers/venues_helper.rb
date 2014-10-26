@@ -11,7 +11,7 @@ module VenuesHelper
 	    	today_close = today_venue.close_time.strftime("%I:%M %p").to_s.downcase!    
 	    	content_tag("span", "Open today #{today_open} to #{today_close}", class: "label label-success")
 	    else
-	    	content_tag("span", "Closed today", class: "label label-danger")
+	    	content_tag("span", "Closed today", class: "label label-danger", data: { :'toggle' => "collapse", :'target' => "#demo" })
 	    end
 	end
 

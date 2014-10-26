@@ -36,6 +36,10 @@
 		<button type="button" class="btn btn-default btn-lg">
 		 <span class="glyphicon glyphicon-share"></span> Tell friends
 		</button>
+		<%#= render 'shared/checkin_form' if user_signed_in? %>
+		<button type="button" class="btn btn-default btn-lg">
+		 <span class="glyphicon glyphicon-star"></span> <%= link_to "Here now?", checkin_deal_path(deal), method: :put %>
+		</button>
 	</div>	  
   </div>
  </div>

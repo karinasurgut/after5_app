@@ -9,16 +9,8 @@
   </div> 
   <div class="col-lg-6">
 	<div class="user-stats">
-	  <p>Total rated deals: <%= current_user.totalrateddeals %></p>
-	  <div class="user-faves">
-	  	<h3><span class="glyphicon glyphicon-star"></span> Favourite deals (<%= current_user.totalrateddeals %>)</h3>
-	    <ul class="deals">
-	    <% @deals = current_user.find_liked_items %>
-	    <% @deals.each do |deal| %>
-	    <%= render partial: 'deals/deal', locals: {deal: deal} %>
-	    <% end %>
-	    </ul>
-	  </div>
+	  <h3>Your stats</h3>
+	  <%= render 'shared/user_stats' %>	
       <div class="user-badges">
 	    <h3>Badges</h3>
 	    <p>Start exploring the deals to earn badges!</p>

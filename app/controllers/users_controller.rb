@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :correct_user, only: [:edit,:update]
+  before_action :correct_user, only: [:edit,:update, :wishlist, :visited, :checkins]
   #before_action :authenticate_user!, only: [:edit,:update]
 
   def new
@@ -34,6 +34,16 @@ class UsersController < ApplicationController
     @lat_lng = cookies[:lat_lng].split("|")
   end
 
+  def wishlist
+  end
+
+  def visited
+  end
+
+  def checkins
+    @checkin_items = current_user.checkins_list
+  end
+
   private
     def admin_user
       redirect_to(root_url) unless current_user.admin?
@@ -48,7 +58,7 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+      redirect_to(root_url) unless @user == current_user
     end
 
 end

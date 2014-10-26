@@ -15,4 +15,13 @@ class Deal < ActiveRecord::Base
 	def userlikes
 		self.get_likes.size
 	end
+
+	def self.from_checkins_by(user)
+      #all_checkins = user.checkins.select(:deal_id).map(&:deal_id).uniq
+      #all_checkins.each do |deal|
+      # d = Deal.find_by(id: deal)
+      #render partial: 'deals/deal', locals: {deal: d}
+      Deal.find(user.checkins.select(:deal_id).map(&:deal_id).uniq)
+    end
+
 end

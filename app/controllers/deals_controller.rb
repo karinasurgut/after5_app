@@ -60,10 +60,24 @@ end
     redirect_to venue_path(@deal.venue)
   end
 
+  def checkin 
+    @deal = Deal.find(params[:id])
+    @checkin = Checkin.create!(deal: @deal, user: current_user)
+    if @checkin.save
+      flash[:success] = "Deal saved to your profile!"
+      redirect_to venue_path(@deal.venue)
+    else
+      @checkin = []
+      flash[:error] = "Something went wrong when checking in for the deal"
+      redirect_to venue_path(@deal.venue)
+    end
+  end
+
   private
 
     def deal_params
-      params.require(:deal).permit(:content, :title, :venue_id)
+      params.require(:deal).permit(:content, :title, :venue_id, 
+                                  checkins_attributes: [:deal_id, :user_id])
     end
 
     def admin_user
