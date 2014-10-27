@@ -101,9 +101,10 @@ body {
 
 .home-title {
   color: #fff;
-  h1{
+}
+
+h1.home-title{
   font-size: 1.7em;
-  }
 }
 
 .left-date{
@@ -226,6 +227,10 @@ div.sb_dropdown{
     padding: 10px 0;
     /*border-top: 1px solid #e8e8e8;*/
   }
+}
+
+.deal-duration {
+  color: #999;
 }
 /* miscellaneous */
 .form-container { 

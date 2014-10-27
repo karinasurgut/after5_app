@@ -5,7 +5,7 @@ class DealsController < ApplicationController
     @venue = Venue.find(deal_params[:venue_id])
     @deal = @venue.deals.build(deal_params)
     if @deal.save
-      flash[:success] = "Deal created!"
+      flash[:success] = deal_params
       redirect_to venue_path(@venue)
     else
       @deal = []
@@ -80,11 +80,13 @@ end
     end
   end
 
+
   private
 
     def deal_params
-      params.require(:deal).permit(:content, :title, :venue_id, :tag_list,
-                                  checkins_attributes: [:deal_id, :user_id])
+      params.require(:deal).permit(:content, :title, :venue_id, :tag_list, :start_date, :end_date,
+                                  checkins_attributes: [:deal_id, :user_id],
+                                  durations_attributes: [:deal_id, :week_day, :from_time, :till_time, :all_day])
     end
 
     def admin_user

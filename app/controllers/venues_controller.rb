@@ -5,7 +5,7 @@ class VenuesController < ApplicationController
   	@venue = Venue.new
     days = [1,2,3,4,5,6,0]
     days.each do |d|
-      @venue.hours.build(day: d)
+     @venue.hours.build(day: d)
     end
   end
   
@@ -19,6 +19,11 @@ class VenuesController < ApplicationController
 
   def deal 
     @deal = @venue.deals.build
+    days = [1,2,3,4,5,6,0]
+    days.each do |d|
+     @duration = @deal.durations.build(week_day:d)
+    end
+
   end
 
   def show

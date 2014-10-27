@@ -22,7 +22,7 @@ class Venue < ActiveRecord::Base
     validates :email, format: { with: VALID_EMAIL_REGEX }
     VALID_WEBSITE_REGEX = /\A^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?\z/i
     validates :website, format: { with: VALID_WEBSITE_REGEX }
-
+    
   private
 
     def venue_address

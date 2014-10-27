@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141026150914) do
+ActiveRecord::Schema.define(version: 20141027085610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,9 +35,25 @@ ActiveRecord::Schema.define(version: 20141026150914) do
     t.integer  "venue_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "start_date"
+    t.date     "end_date"
   end
 
   add_index "deals", ["venue_id"], name: "index_deals_on_venue_id", using: :btree
+
+  create_table "durations", force: true do |t|
+    t.integer  "deal_id"
+    t.time     "from_time"
+    t.time     "till_time"
+    t.integer  "week_day"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "all_day",    default: false
+  end
+
+  add_index "durations", ["deal_id"], name: "index_durations_on_deal_id", using: :btree
+  add_index "durations", ["from_time", "till_time"], name: "index_durations_on_from_time_and_till_time", using: :btree
+  add_index "durations", ["week_day", "from_time", "till_time"], name: "index_durations_on_week_day_and_from_time_and_till_time", using: :btree
 
   create_table "hours", force: true do |t|
     t.integer  "venue_id"

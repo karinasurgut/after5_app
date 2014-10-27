@@ -24,7 +24,7 @@
                 <% for hour in @venue.hours %>
                 <li>
                   <% unless hour.closed? %>
-                    <%= h Date::DAYNAMES[hour.day][0..2] + ": " + hour.open_time.strftime("%I:%M %p").to_s + " to " + hour.close_time.strftime("%I:%M %p").to_s %>
+                    <%= h Date::DAYNAMES[hour.day][0..2] + ": " + hour.open_time.strftime("%l:%M %p").to_s + " to " + hour.close_time.strftime("%l:%M %p").to_s %>
                   <% else %>
                     <%= Date::DAYNAMES[hour.day][0..2] + ": " + "Closed" %>
                   <% end %>

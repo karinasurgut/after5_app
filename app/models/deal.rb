@@ -1,5 +1,9 @@
 class Deal < ActiveRecord::Base
 	belongs_to :venue
+	has_many :durations, dependent: :destroy, foreign_key: "deal_id"
+	accepts_nested_attributes_for :durations, allow_destroy: true,
+								  #:reject_if => :attributes_nil?
+								  :reject_if => lambda { |a| ( a['from_time(4i)'].blank? == a[:all_day].to_i.zero? ) }#, limit: 7
 	acts_as_votable
 	acts_as_taggable
 	#has_many :dealhours
@@ -25,4 +29,10 @@ class Deal < ActiveRecord::Base
       Deal.find(user.checkins.select(:deal_id).map(&:deal_id).uniq)
     end
 
+    # def attributes_nil?(attrs)
+
+    # 	r1 = !attrs[:from_time].nil?
+    # 	r2 = attrs[:all_day]
+    # 	r1 == r2
+    # end
 end

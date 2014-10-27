@@ -2,8 +2,8 @@
 <h1 class = "center">Add Deal</h1>
 <p class = "center">Create new deal for the <%= @venue.name %> using the form below:</p>
 <div class="form-container">
-    <%= form_for(@deal, html: { role: "form" }) do |f| %>
-	  <%= render 'shared/error_messages', object: f.object %>
+<%= form_for(@deal, html: { role: "form" }) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
 	<div class="form-group">
       <%= f.label :title, "Title" %>
       <%= f.text_field :title, class: "form-control", placeholder: "E.g., 5$ beer Fridays" %>
@@ -16,8 +16,65 @@
       <%= f.label :tag_list, "Tags (separated by commas)" %>
       <%= f.text_field :tag_list, class: "form-control" %>
   </div>    
-
-      <%= f.hidden_field :venue_id, placeholder: "#{@venue.id}", class: "form-control" %>
-      <%= f.submit "Create Deal", class: "btn btn-large btn-primary" %>
-    <% end %>
+  <!--Deal duration and times information section-->
+    <h2 class="center">Set up deal duration</h2>
+    <!--Weekdays and hour period selection form -->
+    <h3>Is it a weekly deal?</h3>
+      <p>Indicate the days of the week and times, or select "All day" for an all-day deal.</p>
+    <%= f.fields_for :durations, html: { class: "form-horizontal" } do |builder| %>
+    <%= render 'shared/error_messages', object: builder.object %>
+      <div class="form-group">
+          <%= builder.label :week_day, Date::DAYNAMES[builder.object.week_day][0..2], class: "badge col-xs-12 col-sm-1" %>
+          <%= builder.hidden_field :week_day, placeholder: builder.object.week_day %>
+          <div class="clearfix visible-xs-block"></div>
+          <div class="col-xs-12 col-sm-8 col-xs-offset-1 col-sm-offset-0">
+            <%#= builder.label :from_time, " from" %>
+            <%= builder.time_select :from_time, minute_step: 30, ampm:true, ignore_date:true, include_blank:true %>
+            <%= builder.label :till_time, " till " %>
+            <%= builder.time_select :till_time, minute_step: 30, ampm:true, ignore_date:true, include_blank:true %>
+          </div>
+          <div class="clearfix visible-xs-block"></div>
+          <div class="col-xs-12 col-sm-3 col-xs-offset-1 col-sm-offset-0">
+            <%= builder.check_box :all_day, class: "" %><%= builder.label :all_day, "All day", class: "label-closed" %>
+          </div>
+       </div>
+      <% end %>
+   <!--Custom date selection-->
+  <div>
+    <h3>Does your deal have certain start and end dates?</h3>
+    <p>Select custom start and end dates or select the same start and end date for one-day deals.</p>
+    <div class="form-group">
+        <%= f.label :start_date, "Start Date" %><br/>
+        <%= f.date_select :start_date, default: Date.today, start_year: Time.now.year, class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= f.label :end_date, "End Date (select same as start for one-day deals)" %><br/>
+        <%= f.date_select :end_date, start_year: Time.now.year, include_blank: true, class: "form-control" %>
+    </div> 
+  </div>
+    <%= f.hidden_field :venue_id, placeholder: "#{@venue.id}", class: "form-control" %>
+    <%= f.submit "Create Deal", class: "btn btn-large btn-primary" %>
+<% end %>
 </div>
+<script>
+  $(document).ready(function () {
+      $("input[type=checkbox]").each(function (index,cbItem) {
+        $(this).change(function () {
+        if ($(this).is(":checked")) {
+          $("#deal_durations_attributes_"+ index + "_from_time_4i").prop('disabled', 'disabled');
+          $("#deal_durations_attributes_"+ index + "_from_time_5i").prop('disabled', 'disabled');
+          $("#deal_durations_attributes_"+ index + "_till_time_4i").prop('disabled', 'disabled');
+          $("#deal_durations_attributes_"+ index + "_till_time_5i").prop('disabled', 'disabled');
+      //console.log("diabled fields");
+        }
+        else {
+      $("#deal_durations_attributes_"+ index + "_from_time_4i").prop('disabled', false);
+    $("#deal_durations_attributes_"+ index + "_from_time_5i").prop('disabled', false);
+    $("#deal_durations_attributes_"+ index + "_till_time_4i").prop('disabled', false);
+    $("#deal_durations_attributes_"+ index + "_till_time_5i").prop('disabled', false);
+      //console.log(sb1);  
+        }
+        });
+      });
+    });
+</script>
