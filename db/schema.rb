@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027085610) do
+ActiveRecord::Schema.define(version: 20141027114111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20141027085610) do
     t.date     "end_date"
   end
 
+  add_index "deals", ["start_date", "end_date"], name: "index_deals_on_start_date_and_end_date", using: :btree
   add_index "deals", ["venue_id"], name: "index_deals_on_venue_id", using: :btree
 
   create_table "durations", force: true do |t|
