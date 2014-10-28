@@ -26,15 +26,24 @@
                                      title: deal.id %>
     <%# end %></p>
 	<div class="btn-group-sm">
-		<button type="button" class="btn btn-default btn-lg">
-		 <span class="glyphicon glyphicon-heart-empty"></span> <%= link_to "Love", like_deal_path(deal), method: :put %>
-		</button>
-		<button type="button" class="btn btn-default btn-lg">
-		 <span class="glyphicon glyphicon-flash"></span> <%= link_to "Not a fan", dislike_deal_path(deal), method: :put %>
-		</button>
-		<button type="button" class="btn btn-default btn-lg">
-		 <span class="glyphicon glyphicon-star"></span> <%= link_to "Want", fave_deal_path(deal), method: :put %>
-		</button>
+		<%# if current_user.find_up_voted_items.include?(deal) %>
+			<button type="button" class="btn btn-default btn-lg">
+			 <span class="glyphicon glyphicon-heart-empty"></span> <%= link_to "Love", like_deal_path(deal), method: :put %>
+			</button>
+		
+		<%# if current_user.find_down_voted_items.include?(deal) %>
+			<button type="button" class="btn btn-default btn-lg">
+			 <span class="glyphicon glyphicon-flash"></span> <%= link_to "Not a fan", dislike_deal_path(deal), method: :put %>
+			</button>
+		<% if current_user.find_liked_items.include?(deal) %>
+			<button type="button" class="btn btn-warning btn-lg" >
+			 <span class="glyphicon glyphicon-star"></span> <%= link_to "Want", fave_deal_path(deal), method: :put, remote: true %>
+			</button>
+		<% else %>
+			<button type="button" class="btn btn-default btn-lg id="want-button"">
+			 <span class="glyphicon glyphicon-star"></span> <%= link_to "Want", fave_deal_path(deal), method: :put %>
+			</button>
+		<% end %>
 		<button type="button" class="btn btn-default btn-lg">
 		 <span class="glyphicon glyphicon-share"></span> Tell friends
 		</button>

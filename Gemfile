@@ -17,6 +17,8 @@ gem 'geocoder'
 gem 'gmaps4rails'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'acts-as-taggable-on', '~> 3.4'
+gem 'mysql2',          '~> 0.3.13', :platform => :ruby
+gem 'thinking-sphinx', '~> 3.1.1'
 
 group :development, :test do
   gem 'rspec-rails', '2.13.1'

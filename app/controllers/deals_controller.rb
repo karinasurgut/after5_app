@@ -5,7 +5,7 @@ class DealsController < ApplicationController
     @venue = Venue.find(deal_params[:venue_id])
     @deal = @venue.deals.build(deal_params)
     if @deal.save
-      flash[:success] = deal_params
+      flash[:success] = "Deal created successfully!"
       redirect_to venue_path(@venue)
     else
       @deal = []
@@ -14,18 +14,17 @@ class DealsController < ApplicationController
   end
 
  def search  
-    if params[:tag]
-      @deals = Deal.tagged_with(params[:tag])
-    else
-      @deals= Deal.all
-    end  
-    
-    @hash = Gmaps4rails.build_markers(@deals) do |deal, marker|
-      marker.lat deal.venue.latitude
-      marker.lng deal.venue.longitude
-      marker.infowindow "<span class='glyphicon glyphicon-cutlery'></span>
-      <p style='color:red;'>#{deal.title}</p><i>#{deal.venue.name}</i><p>#{deal.content}</p>"
-    end  
+    @deals = Deal.search params[:search]
+    # if params[:tag]
+    #   @deals = Deal.tagged_with(params[:tag])
+    # end
+      #@deals= Deal.all
+    # @hash = Gmaps4rails.build_markers(@deals) do |deal, marker|
+    #   marker.lat deal.venue.latitude
+    #   marker.lng deal.venue.longitude
+    #   marker.infowindow "<span class='glyphicon glyphicon-cutlery'></span>
+    #   <p style='color:red;'>#{deal.title}</p><i>#{deal.venue.name}</i><p>#{deal.content}</p>"
+    # end  
 end
 
   def destroy

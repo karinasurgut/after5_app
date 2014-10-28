@@ -8,22 +8,21 @@
 <%- end %>
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class = "row">
-  <div class ="col-lg-10 center">
+  <div class ="col-lg-12 center">
 	<div class="jumbotron">
-	  <div class="container">                        
-		<form id="ui_element" class="sb_wrapper navbar-form" role="search">
-		    <!--<p>
-				<input class="sb_input" type="text">
-				<input class="sb_search" type="submit" value="">
-			</p>-->
-			<div class="form-group input-group">
-			<input type="text" class="form-control sb_input" placeholder="E.g. wine, Newtown, Miss Peaches...">
-			<span class="input-group-btn">
-				<button type="submit" class="btn btn-default sb_search"><span class="glyphicon glyphicon-search"></span></button>
-			</span>
-		  </div>
-		  <%= render 'shared/dropdown' %>
-		</form>
+	  <div class="container">
+	  <%= form_tag(search_path, method: "get", id: "ui-element", class: "sb_wrapper navbar-form", role: "search") do %>
+	  <%= label_tag(:search, "Search for:", class: "sr-only") %>
+	  <div class="form-group input-group">
+	    <%= text_field_tag(:search, params[:search], class: "form-control sb_input", placeholder: "E.g. wine, Newtown, Miss Peaches...") %> 
+	    <span class="input-group-btn">
+	  	  <%= button_tag(type: 'submit', class: "btn btn-default sb_search") do %>
+            <span class='glyphicon glyphicon-search'></span>
+          <% end %>
+	    </span> 
+	  </div>
+	  <%= render 'shared/dropdown' %>
+	<% end %>
 		<%= render 'shared/modal' %>
 		<!-- Alert for a current location matching a deal-->
 		<div class="alert alert-info">
@@ -57,17 +56,17 @@
 		      <span class="label label-default">+ Near you</span>
 		      <span class="label label-success">+ Price</span>
 		      <span class="label label-warning">+ Atmosphere</span></p>
-		<p>Found <span class="badge">4</span> results</p>
+		<p>Found <span class="badge"><%= @deals.count %></span> <%= "result".pluralize(@deals.count) %></p>
 	    <a href="#"><button type="button" class="btn btn-default btn-sm">List View</button></a>
 	    <a href = "#"><button type="button" class="btn btn-primary btn-sm">Map View</button></a></p>
 	    <h3>SEARCH RESULTS</h3>
 	    <% @deals.each do |deal| %>  
-	      <%= render deal %>
+	      <%= render partial: 'deals/deal', :locals => {:deal => deal} %>
 	    <% end %>
 	</div>
   </div>
 </div>
-<script type="text/javascript">
+<!--<script type="text/javascript">
 	handler = Gmaps.build('Google');
 	handler.buildMap({ 
 		provider: { disableDefaultUI: true }, 
@@ -89,4 +88,4 @@
 	  handler.bounds.extendWith(markers);
 	  handler.fitMapToBounds();
 	});
-</script>
+</script>-->

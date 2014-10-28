@@ -3,7 +3,13 @@
   <div class="container">  
   	<h1 class="home-title center">Your Happy Hour starts now!</h1> 
   	<h4 class="center home-title">Find the best beer, food &amp; drink deals near you.</h4>                     
-	<form id="ui_element" class="sb_wrapper navbar-form" role="search">
+	<% form_tag search_path, :method => 'get' do %>
+		  <p>
+		    <%= text_field_tag :search, params[:search] %>
+		    <%= submit_tag "Search", :name => nil %>
+		  </p>
+		<% end %>
+		<form id="ui_element" class="sb_wrapper navbar-form" role="search">
 	    <!--<p>
 			<input class="sb_input" type="text">
 			<input class="sb_search" type="submit" value="">
