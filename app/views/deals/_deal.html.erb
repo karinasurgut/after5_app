@@ -23,33 +23,33 @@
       <span> | </span>
       <%= link_to "delete", deal, method: :delete,
                                      data: { confirm: "Are you sure?" },
-                                     title: deal.id %>
+                                     title: deal.venue %>
     <%# end %></p>
 	<div class="btn-group-sm">
 		<%# if current_user.find_up_voted_items.include?(deal) %>
 			<button type="button" class="btn btn-default btn-lg">
-			 <span class="glyphicon glyphicon-heart-empty"></span> <%= link_to "Love", like_deal_path(deal), method: :put %>
+			 <span class="glyphicon glyphicon-heart-empty"></span><br/><%= link_to "Love", like_deal_path(deal), method: :put %>
 			</button>
 		
 		<%# if current_user.find_down_voted_items.include?(deal) %>
 			<button type="button" class="btn btn-default btn-lg">
-			 <span class="glyphicon glyphicon-flash"></span> <%= link_to "Not a fan", dislike_deal_path(deal), method: :put %>
+			 <span class="glyphicon glyphicon-flash"></span><br/><%= link_to "Not a fan", dislike_deal_path(deal), method: :put %>
 			</button>
 		<% if current_user.find_liked_items.include?(deal) %>
 			<button type="button" class="btn btn-warning btn-lg" >
-			 <span class="glyphicon glyphicon-star"></span> <%= link_to "Want", fave_deal_path(deal), method: :put, remote: true %>
+			 <span class="glyphicon glyphicon-star"></span><br/><%= link_to "Want", fave_deal_path(deal), method: :put, remote: true %>
 			</button>
 		<% else %>
 			<button type="button" class="btn btn-default btn-lg id="want-button"">
-			 <span class="glyphicon glyphicon-star"></span> <%= link_to "Want", fave_deal_path(deal), method: :put %>
+			 <span class="glyphicon glyphicon-star"></span><br/><%= link_to "Want", fave_deal_path(deal), method: :put %>
 			</button>
 		<% end %>
 		<button type="button" class="btn btn-default btn-lg">
-		 <span class="glyphicon glyphicon-share"></span> Tell friends
+		 <span class="glyphicon glyphicon-share"></span><br/>Tell friends
 		</button>
 		<%#= render 'shared/checkin_form' if user_signed_in? %>
 		<button type="button" class="btn btn-default btn-lg">
-		 <span class="glyphicon glyphicon-star"></span> <%= link_to "Here now?", checkin_deal_path(deal), method: :put %>
+		 <span class="glyphicon glyphicon-star"></span><br/><%= link_to "Here now?", checkin_deal_path(deal), method: :put %>
 		</button>
 	</div>	  
   </div>

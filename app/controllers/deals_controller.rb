@@ -31,7 +31,8 @@ class DealsController < ApplicationController
 end
 
   def destroy
-    @venue = Venue.find(params[:id])
+    @deal = Deal.find(params[:id])
+    @venue = @deal.venue
     @deal.destroy
     redirect_to venue_path(@venue)
   end

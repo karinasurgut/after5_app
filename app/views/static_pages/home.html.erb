@@ -2,7 +2,7 @@
 <div class="jumbotron">
   <div class="container">  
   	<h1 class="home-title center">Your Happy Hour starts now!</h1> 
-  	<h4 class="center home-title">Find the best beer, food &amp; drink deals near you.</h4>                     
+  	<h4 class="center home-title">Find the best beer, food &amp; drink<br/>deals near you.</h4>                     
 	<% form_tag search_path, :method => 'get' do %>
 		  <p>
 		    <%= text_field_tag :search, params[:search] %>
@@ -27,9 +27,9 @@
 		<button type="button" class="close" data-dismiss="alert">
 		<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 		</button>
-		<h4>Deals near you</h4>
+		<h4>Check out these deals near you</h4>
 		<div class= "deal-box">
-			<p>Deal info: Donec id elit non mi</p>
+			<%= render Deal.first %>
 			<p style="text-align:center;">
 			  <!-- Large modal -->
 			<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Here now!</button>
@@ -43,7 +43,7 @@
   <%= render 'shared/fb_signin' %>
 <% end %>
 <div class="container">
-  <div class="container-fluid deals-grid owl-carousel">
+  <div class="container-fluid deals-grid owl-carousel" style = "padding-top:10px;">
   	<div class="featured-daypicker">
   	<div class="btn-group btn-group-justified">
  	  <div class="btn-group">
@@ -70,14 +70,14 @@
 	</div>
 	<div class="container-fluid deal-carousel" style="inline-flex">
 		<div class="pull-left date">
-			<p class="left-date">21</p><p class="left-month">Oct</p><p class="left-week">Sat</p>
+			<p class="left-date">28</p><p class="left-month">Oct</p><p class="left-week">Sat</p>
 		</div>
 		<div class="hor-wrapper">
 			<a href = "#" class = "internal">
-				<img src="img/misspeaches150.jpg" alt="" class="img-circle" />
+				<img src="assets/misspeaches.jpg" alt="" class="img-circle" />
 			</a>
 			<a href = "#" class = "internal">
-				<img src="img/misspeaches150.jpg" alt="" class="img-circle" />
+				<img src="assets/misspeaches.jpg" alt="" class="img-circle" />
 			</a>
 		</div>
 	</div>
@@ -91,16 +91,20 @@
   <!-- Example row of columns -->
   <div class="row featured">
     <div class="col-xs-6 col-sm-3">
-      <img src="img/misspeaches220.jpg" alt="">
+    	<h4>Melbourne Cup</h4>
+      <%= link_to image_tag("melbournecup.jpg", alt: "Melbourne cup", class: "img-thumbnail", style: "height:70px;"), 'deals/tags/Melbourne%20Cup' %>
     </div>
     <div class="col-xs-6 col-sm-3">
-      <img src="img/misspeaches220.jpg" alt="">
+    <h4>Soul Kitchen</h4>
+      <img src="assets/kuletos.jpg" alt="" class="img-thumbnail">
     </div>
     <div class="col-xs-6 col-sm-3">
-		<img src="img/misspeaches220.jpg" alt="">
+    	<h4>Live Music</h4>
+		<img src="assets/kuletos.jpg" alt="",class="img-thumbnail">
 	</div>
     <div class="col-xs-6 col-sm-3">
-    	<img src="img/misspeaches220.jpg" alt="">  
+    	<h4>Cocktail Bars</h4>
+    	<img src="assets/kuletos.jpg" alt="", class="img-thumbnail">  
     </div>
   </div>
 

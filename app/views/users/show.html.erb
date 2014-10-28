@@ -9,13 +9,17 @@
   </div> 
   <div class="col-lg-6">
 	<div class="user-stats">
-	  <h3>Your stats</h3>
+	  <h3 class="center">Your stats</h3>
 	  <%= render 'shared/user_stats' %>	
-      <div class="user-badges">
+      <div class="user-badges" style="padding:15px;">
 	    <h3>Badges</h3>
 	    <p>Start exploring the deals to earn badges!</p>
+	    <p><%= image_tag("badgebw1.png", alt: "Badge1", style:"width:80px;") %>
+	    	<%= image_tag("badgebw2.png", alt: "Badge2", style:"width:80px;") %>
+	    	<%= image_tag("badgebw3.png", alt: "Badge3", style:"width:80px;") %>
+	    </p>
       </div>
-	  <div class="user-tags">
+	  <div class="user-tags" style="padding:15px;">
 		<h3>You Like...</h3>
 		<h4><%= raw @user.interest_list.map { |t| content_tag("span", t, class: "label label-success") }.join(' ') %>
 		<%= link_to "+ Add", interests_user_path(@user), class: "label label-info" %></h4></h4>			

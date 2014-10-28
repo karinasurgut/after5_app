@@ -201,6 +201,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip (< 1.0.0)
       websocket (~> 1.0.4)
+    snap_js-rails (1.9.2)
+      railties (>= 3.1)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -267,6 +269,7 @@ DEPENDENCIES
   sass-rails (= 4.0.3)
   sdoc (= 0.3.20)
   selenium-webdriver (= 2.35.1)
+  snap_js-rails
   sprockets (= 2.11.0)
   thinking-sphinx (~> 3.1.1)
   turbolinks (= 1.1.1)

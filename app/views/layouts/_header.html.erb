@@ -1,15 +1,28 @@
-<header class="navbar navbar-inverse" role="navigation"><!--navbar-fixed-top-->
+<header class="navbar navbar-inverse" role="navigation"  id="content_head"><!--navbar-fixed-top-->
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+      <button type="button" class="navbar-toggle collapsed" id="open-left"><!-- data-toggle="collapse" data-target=".navbar-collapse"  -->
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to image_tag("after5.png", alt: "After5"), root_path, id: "logo", class: "navbar-brand" %>    
+      <%= link_to image_tag("after5.png", alt: "After5"), root_path, id: "logo", class: "navbar-brand" %>
+      <div class="" style="position:absolute; right: 7px;">
+          <% if user_signed_in? %>
+           <span class="hidden-xs">Howdy, <%= first_name_for(current_user) %></span> 
+           <%= userpic_for(current_user) %>
+          <% end %>
+           <button type="button" class="navbar-toggle btn-lg" id="srch-button"><!-- data-toggle="collapse" data-target=".navbar-collapse"  -->
+            <span class="glyphicon glyphicon-search" style="color:white;"></span>
+          </button>
+          
+        </div>
+     <!--   <div class="badge" >
+          <a href='#' id="srch-button"><span class="glyphicon glyphicon-search"></span></a>
+        </div> -->
     </div>
-    <div class="navbar-collapse collapse">
+    <div class="navbar-collapse collapse" id="menu">
     	<ul class="nav nav-pills pull-left">
     	  <li><%= link_to "About", about_path %></li>
     	  <% if user_signed_in? %>
@@ -43,11 +56,18 @@
         <li><%= link_to "Search", search_path %></li>
     	</ul>
     </div><!--/.navbar-collapse -->
-    <div class="navbar-user pull-right">
-        <% if user_signed_in? %>
-           <span class="hidden-xs">Howdy, <%= first_name_for(current_user) %></span> 
-           <%= userpic_for(current_user) %>
-        <% end %>
+    <div id="search-box">
+          <div class="form-group input-group"  align="center">
+            <input type="text" class="form-control sb_input" placeholder="E.g. wine, Newtown, Miss Peaches...">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-default sb_search"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+          </div>  
     </div>
+    
+
+
+
   </div>
 </header>
+<div class="detail" id="content"  style="height:760px">
