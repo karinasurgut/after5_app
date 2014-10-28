@@ -1,0 +1,5 @@
+production:
+  pid_file: https://after5.herokuapp.com/shared/tmp/searchd.pid
+  indices_location: https://after5.herokuapp.com/shared/db/sphinx
+  configuration_file: /https://after5.herokuapp.com/shared/production.sphinx.conf
+  binlog_path: https://after5.herokuapp.com/shared/binlog

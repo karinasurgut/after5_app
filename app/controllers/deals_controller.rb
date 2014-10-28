@@ -13,8 +13,11 @@ class DealsController < ApplicationController
     end
   end
 
- def search  
-    @deals = Deal.search params[:search]
+ def search
+    @lat = cookies[:lat_lng].split("|")[0]
+    @lng = cookies[:lat_lng].split("|")[1]
+    @deals = Deal.search params[:search], :geo => [@lat,@lng],
+    :order => "geodist ASC"
     # if params[:tag]
     #   @deals = Deal.tagged_with(params[:tag])
     # end
