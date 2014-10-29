@@ -1,7 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "snap";
+//@import "snap";
+@import "slick";
 @import "custom";
+@font-face {
+  font-family: 'Terembura';    
+  src: url('/assets/terembura.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files

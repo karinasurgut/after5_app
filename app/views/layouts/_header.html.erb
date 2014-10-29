@@ -1,4 +1,4 @@
-<header class="navbar navbar-inverse" role="navigation"  id="content_head"><!--navbar-fixed-top-->
+<header class="navbar navbar-inverse" role="navigation"><!--id="content_head" navbar-fixed-top-->
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" id="open-left"><!-- data-toggle="collapse" data-target=".navbar-collapse"  -->
@@ -8,12 +8,12 @@
         <span class="icon-bar"></span>
       </button>
       <%= link_to image_tag("after5.png", alt: "After5"), root_path, id: "logo", class: "navbar-brand" %>
-      <div class="" style="position:absolute; right: 7px;">
+      <div class="nav-right-side">
           <% if user_signed_in? %>
            <span class="hidden-xs">Howdy, <%= first_name_for(current_user) %></span> 
            <%= userpic_for(current_user) %>
           <% end %>
-           <button type="button" class="navbar-toggle btn-lg" id="srch-button"><!-- data-toggle="collapse" data-target=".navbar-collapse"  -->
+           <button type="button" class="navbar-toggle btn-lg" id="srch-button" style= "float:right;"><!-- data-toggle="collapse" data-target=".navbar-collapse"  -->
             <span class="glyphicon glyphicon-search" style="color:white;"></span>
           </button>
           
@@ -70,4 +70,3 @@
 
   </div>
 </header>
-<div class="detail" id="content"  style="height:760px">

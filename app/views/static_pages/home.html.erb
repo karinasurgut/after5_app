@@ -2,7 +2,7 @@
 <div class="jumbotron">
   <div class="container">  
   	<h1 class="home-title center">Your Happy Hour starts now!</h1> 
-  	<h4 class="center home-title">Find the best beer, food &amp; drink<br/>deals near you.</h4>                     
+  	<h4 class="center home-title">Find the best beer, food &amp; drink deals near you</h4>                     
 	<% form_tag search_path, :method => 'get' do %>
 		  <p>
 		    <%= text_field_tag :search, params[:search] %>
@@ -14,10 +14,10 @@
 			<input class="sb_input" type="text">
 			<input class="sb_search" type="submit" value="">
 		</p>-->
-		<div class="form-group input-group">
-		<input type="text" class="form-control sb_input" placeholder="E.g. wine, Newtown, Miss Peaches...">
+		<div class="form-group input-group searchbar">
+		<input type="text" class="form-control sb_input searchbar-input" placeholder="E.g. wine, Newtown, Miss Peaches...">
 		<span class="input-group-btn">
-			<button type="submit" class="btn btn-default sb_search"><span class="glyphicon glyphicon-search"></span></button>
+			<button type="submit" class="btn btn-default sb_search searchbar-btn"><span class="glyphicon glyphicon-search"></span></button>
 		</span>
 	  </div>
 	  <%= render 'shared/dropdown' %>
@@ -58,29 +58,32 @@
 		  <span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu">
-		  <li><a href="#">Monday 23 Oct</a></li>
-		  <li><a href="#">Tuesday 24 Oct</a></li>
-		  <li><a href="#">Wednesday 25 Oct</a></li>
-		  <li><a href="#">Thursday 26 Oct</a></li>
-		  <li><a href="#">Friday 27 Oct</a></li>
-		  <li><a href="#">Saturday 28 Oct</a></li>
-		  <li><a href="#">Sunday 29 Oct</a></li>
+			<% [2,3,4,5,6,7,8].each do |day| %>
+			  <li><%= link_to (Time.now.to_date + day.days).strftime("%A %e %b"), '#', class: ""%></li>
+			<% end %>
 		</ul>
 		  </div>
 	</div>
+	<!-- slick slider -->
 	<div class="container-fluid deal-carousel" style="inline-flex">
 		<div class="pull-left date">
-			<p class="left-date">28</p><p class="left-month">Oct</p><p class="left-week">Sat</p>
+			<p class="left-date">21</p><p class="left-month">Oct</p><p class="left-week">Sat</p>
 		</div>
-		<div class="hor-wrapper">
-			<a href = "#" class = "internal">
-				<img src="assets/misspeaches.jpg" alt="" class="img-circle" />
-			</a>
-			<a href = "#" class = "internal">
-				<img src="assets/misspeaches.jpg" alt="" class="img-circle" />
-			</a>
+		<div id="deal-container">
+			<div class="content">
+			  <div class="slider responsive">
+				<div><div><a href = "#"><img src="assets/misspeaches.jpg" class="img-circle img-responsive" /></a></div></div>
+				<div><div><a href = "#"><img src="assets/misspeaches.jpg" class="img-circle img-responsive" /></a></div></div>
+				<div><div><a href = "#"><img src="assets/misspeaches.jpg" class="img-circle img-responsive" /></a></div></div>
+				<div><div><a href = "#"><img src="assets/misspeaches.jpg" class="img-circle img-responsive" /></a></div></div>
+				<div><div><a href = "#"><img src="assets/misspeaches.jpg" class="img-circle img-responsive" /></a></div></div>
+				<div><div><a href = "#"><img src="assets/misspeaches.jpg" class="img-circle img-responsive" /></a></div></div>
+				<div><div><a href = "#"><img src="assets/misspeaches.jpg" class="img-circle img-responsive" /></a></div></div>				
+			  </div>	
+			</div>
 		</div>
 	</div>
+	<!-- slick slider -->
   </div>
 </div>
 
@@ -92,20 +95,18 @@
   <div class="row featured">
     <div class="col-xs-6 col-sm-3">
     	<h4>Melbourne Cup</h4>
-      <%= link_to image_tag("melbournecup.jpg", alt: "Melbourne cup", class: "img-thumbnail", style: "height:70px;"), 'deals/tags/Melbourne%20Cup' %>
+      <%= link_to image_tag("melbournecup.jpg", alt: "Melbourne cup", class: "img-thumbnail", style: "height:95px;"), 'deals/tags/Melbourne%20Cup' %>
     </div>
     <div class="col-xs-6 col-sm-3">
     <h4>Soul Kitchen</h4>
-      <img src="assets/kuletos.jpg" alt="" class="img-thumbnail">
+      <%= image_tag("kuletos.jpg", alt: "Soul Kitchen", class: "img-thumbnail") %>
     </div>
     <div class="col-xs-6 col-sm-3">
     	<h4>Live Music</h4>
-		<img src="assets/kuletos.jpg" alt="",class="img-thumbnail">
+		<%= image_tag("kuletos.jpg", alt: "Live Music", class: "img-thumbnail") %>
 	</div>
     <div class="col-xs-6 col-sm-3">
     	<h4>Cocktail Bars</h4>
-    	<img src="assets/kuletos.jpg" alt="", class="img-thumbnail">  
+    	<%= image_tag("misspeaches.jpg", alt: "Cocktail Bars", class: "img-thumbnail") %>
     </div>
   </div>
-
-  <hr>

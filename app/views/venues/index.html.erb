@@ -1,7 +1,7 @@
 <% venue_index_title %>
 <% provide(:title, @pagetitle) %>
-<h1><%= @pagetitle %></h1>
 <div class="container">
+<h1 class= "center"><%= @pagetitle %></h1>
 <ul class="venues">
   <% @venues.each do |venue| %>
     <%= render venue %>

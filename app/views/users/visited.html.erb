@@ -1,13 +1,16 @@
-<% provide(:title, "Wishlist") %>
+<% provide(:title, "Visited") %>
+<div class="container" style = "padding-top:30px;">
 <div class="row">	  
   <div class="col-lg-6 center">
     <%= userpic_for(@user,"large") %><br/>
-    <h1 class="center">
+    <h1 class="center user-name">
       <%= @user.name %>
     </h1>
+     <p class="center"><%= link_to 'Back to profile', user_path(@user), class: "btn btn-sm btn-default" %></p>
   </div> 
   <div class="col-lg-6">
-	<h3>Venues you've been to</h3>
+    <hr>
+	<h3 class="center">Venues you've been to</h3>
   	<ul class="deals">
   		<% spots = unique_venues_visited(@user) %>
   		<% spots.each do |spot| %>
@@ -16,4 +19,5 @@
   		<% end %>
 	  </ul>
   </div>
+</div>
 </div>

@@ -1,29 +1,50 @@
 <% provide(:title, @user.name) %>
+<div class="container" style = "padding-top:30px;">
 <div class="row">	  
   <div class="col-lg-6 center">
     <%= userpic_for(@user,"large") %><br/>
-    <h1 class="center">
+    <h1 class="center user-name">
       <%= @user.name %>
     </h1>
-    <p class="center"><%= link_to 'Edit profile', edit_user_registration_path, class: "btn btn-sm btn-warning" %></p>
+    <% if @user == current_user %>
+    <p class="center"><%= link_to 'Edit profile', edit_user_registration_path, class: "btn btn-sm btn-default" %></p>
+    <% end %>
+    <hr>
+    <div class="user-tags center" style="padding:15px;">
+		<% if @user == current_user %>
+		<h3>You Like...</h3>
+		<h4><%= raw @user.interest_list.map { |t| content_tag("span", t, class: "label label-primary") }.join(' ') %>
+		<%= link_to "+ Add", interests_user_path(@user), class: "label label-info" %></h4></h4>
+		<% else %>
+		<h3>Likes...</h3>
+		<h4><%= raw @user.interest_list.map { |t| content_tag("span", t, class: "label label-primary") }.join(' ') %>
+		<% end %>			
+	</div>
   </div> 
   <div class="col-lg-6">
+  	<hr>
 	<div class="user-stats">
+	<% if @user == current_user %>
 	  <h3 class="center">Your stats</h3>
+	<% else %>
+	<h3 class="center">After5 Stats</h3>
+	<% end %>
 	  <%= render 'shared/user_stats' %>	
-      <div class="user-badges" style="padding:15px;">
+      <div class="user-badges center" style="padding:15px;">
 	    <h3>Badges</h3>
-	    <p>Start exploring the deals to earn badges!</p>
+	    <% if @user == current_user %>
+	      <p>Start exploring the deals to earn badges!</p>
+	    <% else %>
+	      <p><%= @user.name.split(" ")[0] %> has no badges yet :(</p>
+		<% end %>
 	    <p><%= image_tag("badgebw1.png", alt: "Badge1", style:"width:80px;") %>
 	    	<%= image_tag("badgebw2.png", alt: "Badge2", style:"width:80px;") %>
 	    	<%= image_tag("badgebw3.png", alt: "Badge3", style:"width:80px;") %>
 	    </p>
+
       </div>
-	  <div class="user-tags" style="padding:15px;">
-		<h3>You Like...</h3>
-		<h4><%= raw @user.interest_list.map { |t| content_tag("span", t, class: "label label-success") }.join(' ') %>
-		<%= link_to "+ Add", interests_user_path(@user), class: "label label-info" %></h4></h4>			
-	  </div>
+	  
 	</div>
   </div>
+</div>
 </div>

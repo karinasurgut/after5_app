@@ -3,20 +3,24 @@
   <div class="panel-body">
   	<div class="row">
   		<div class="col-xs-8">
-	  		<h3 style="color:red;"><%= deal.title %></h3>
+	  		<h3 class="deal-title"><%= deal.title %></h3>
 	  		<%= deal_duration_for(deal) %>
+	  		<h4><%= deal.venue.name %> <span class="glyphicon glyphicon-cutlery"></span></h4>
+			<p><%= raw deal.tag_list.map { |t| link_to "#" + t, tag_path(t) }.join(' ') %>
 		</div>
-		<div class="col-xs-4">
+		<div class="col-xs-4 scores-box">
 	  		<% if deal.score > 0 %>
-	  		<p style = "color:red;">Rating: <%= deal.score %></p>
+	  		<p><span class="glyphicon glyphicon-fire"></span> Rating: <%= deal.score %><br/>
 	  		<% end %>
 	  		<% if deal.userlikes > 0 %>
-	  		<p style = "color:red;">Likes: <%= deal.userlikes if deal.userlikes > 0%></p>
+	  		<span class="glyphicon glyphicon-heart"></span> Likes: <%= deal.userlikes if deal.userlikes > 0%></p>
 	  		<% end %>
+	  		<%#= render 'shared/checkin_form' if user_signed_in? %>
+			<button type="button" class="btn btn-default btn-sm">
+			 <span class="glyphicon glyphicon-star"></span><%= link_to "Here now?", checkin_deal_path(deal), method: :put %>
+			</button>
 		</div>
 	</div>
-	<h4><%= deal.venue.name %> <span class="glyphicon glyphicon-cutlery"></span></h4>
-	<p><%= raw deal.tag_list.map { |t| link_to "#" + t, tag_path(t) }.join(' ') %>
 	<p><%= deal.content %><br/>
 	<%# if current_user.admin? %>
       <%= link_to "edit", edit_deal_path(deal) %>
@@ -46,10 +50,6 @@
 		<% end %>
 		<button type="button" class="btn btn-default btn-lg">
 		 <span class="glyphicon glyphicon-share"></span><br/>Tell friends
-		</button>
-		<%#= render 'shared/checkin_form' if user_signed_in? %>
-		<button type="button" class="btn btn-default btn-lg">
-		 <span class="glyphicon glyphicon-star"></span><br/><%= link_to "Here now?", checkin_deal_path(deal), method: :put %>
 		</button>
 	</div>	  
   </div>

@@ -1,17 +1,22 @@
 <% provide(:title, @venue.name) %>
+<div class = "container" style= "padding-top: 30px;">
 <%= render 'shared/modal' %>
 <div class="row">
 <div class="col-lg-6">
 <div class="image-header">
+  <h1 class="center user-name"><%= @venue.name %><!--<span class="glyphicon glyphicon-camera"></span>--></h1>
   <% img = imagefile_for(@venue) %>
   <%= image_tag("#{img}", alt:"#{@venue.name}", class: "img-rounded", style:"width:100%;") %>
-  <h1 class="center"><%= @venue.name %><!--<span class="glyphicon glyphicon-camera"></span>--></h1>
+  
 </div>
 </div>
-<div class="col-lg-6">
-  <div class="container-venue container">
-	<div class="venue-info clearfix">		
-		<div class="col-xs-6 col-lg-3">
+<div class="col-lg-6 venue-right">
+  <div class="container-venue container-fluid">
+	<div class="venue-info">
+    
+    <h3 class = "center">Venue Info</h3>		
+		<div class="col-xs-6 col-lg-6">
+
           <p><%= @venue.street %><br/>
           <%= @venue.suburb %> <%= @venue.postcode %><br/>
           Ph: <%= @venue.phone %><br/>
@@ -24,9 +29,9 @@
                 <% for hour in @venue.hours %>
                 <li>
                   <% unless hour.closed? %>
-                    <%= h Date::DAYNAMES[hour.day][0..2] + ": " + hour.open_time.strftime("%l:%M %p").to_s + " to " + hour.close_time.strftime("%l:%M %p").to_s %>
+                    <%= raw "<span class= 'label label-info'>" + Date::DAYNAMES[hour.day][0..2] + "</span> " + hour.open_time.strftime("%l:%M %p").to_s.downcase! + " to " + hour.close_time.strftime("%l:%M %p").to_s.downcase! %>
                   <% else %>
-                    <%= Date::DAYNAMES[hour.day][0..2] + ": " + "Closed" %>
+                    <%= raw "<span class= 'label label-info'>" + Date::DAYNAMES[hour.day][0..2] + "</span> " + "Closed" %>
                   <% end %>
                 </li>
                 <% end %>
@@ -45,13 +50,13 @@
       	  	Longitude: <%= @venue.longitude %></div>
           <%# end %>
         </div>
-        <div class="col-xs-6 col-lg-3 center">
+        <div class="col-xs-6 col-lg-6 center">
           <h4 style="color:darkgreen;"><%= distance_to_user(@venue) %> km</h4>
           <p><a href="#"><span class="glyphicon glyphicon-map-marker"></span> Show map</a><p>
     	  <button class="btn btn-primary btn-warning" type="button">Where next?</button>
     	</div>
 	</div>
-</div>
+</div><hr>
 	<% if @venue.deals.any? %>
       <div class="deal-info">
 	    <h3 class="center">Current deals (<%= @venue.deals.count %>)</h3>
@@ -63,5 +68,6 @@
     <h3 class="center">Current deals</h3>
       <p class="bg-info">This place has no deals for now, come back later!</p> 
     <% end %>
+</div>
 </div>
 </div>

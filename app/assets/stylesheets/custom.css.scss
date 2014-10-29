@@ -53,6 +53,7 @@ p {
 
 /* footer */
 footer {
+  padding: 15px;
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
@@ -97,16 +98,25 @@ footer {
 body {
   /*padding-top: 50px;*/
   padding-bottom: 20px;
+  overflow-y: auto;
 }
 
 .home-title {
   color: #fff;
-  text-shadow: 1px 1px 1px #000;
+  text-shadow: 1px 1px 5px #000;
+
 }
 
 h1.home-title{
-  font-size: 1.75em;
-  color: #fff
+  font-family: 'Terembura', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 44px;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 30px;
+}
+
+h4.home-title{
+  font-size: 23px;
 }
 
 .left-date{
@@ -139,17 +149,41 @@ h1.home-title{
   background-color: #00b3e5;
   border-color: #fff;
 }
-.jumbotron {
-padding: 0px;
-margin-bottom: 0;
-color: inherit;
-background: url('searchtiles.png') left top repeat;
-background-color: #00b3e5;
-  p {
-    font-size:16px;
-    margin-bottom:10px;
-  }
+
+.nav-pills{
+  
+  padding-top: 7px;
 }
+.jumbotron {
+  box-shadow: inset 0 0 20px 0 #999;
+  padding: 0px;
+  margin-bottom: 0;
+  color: inherit;
+  background: url('searchtiles.png') left top repeat;
+  background-color: #00b3e5;
+    p {
+      font-size:16px;
+      margin-bottom:10px;
+    }
+}
+
+/*searchbar on home and search pages*/
+.searchbar {
+  border: 5px solid #e73363;
+  width:100%;
+  border-radius: 7px;
+}
+
+.searchbar-input {
+  font-family: 'Terembura', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  height: 50px;
+}
+
+.searchbar-btn {
+  height: 50px;
+  width:100%;
+}
+
 
 .featured div img{
 margin-bottom:10px;
@@ -175,6 +209,7 @@ height:120px;
 width:120px;
 }
 .featured-title{
+  font-family: 'Terembura', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 font-size:23px;
 color:#686868;
 }
@@ -195,6 +230,12 @@ color:#fff;
 .navbar-user {
   margin-top: -50px;
   margin-right: 5px;
+}
+
+.nav-right-side{
+position:absolute; 
+right: -12px;
+color: #fff;
 }
 
 div.sb_dropdown{
@@ -302,16 +343,22 @@ padding-right:0;
   font-size: 20px;
   font-weight: bold;
 }
-
-.footer{
-  height:50px;  
+header {
+  min-height: 60px;
+}
+header>.container {
+  padding-top:2px;
+}
+/*footer{
+  height:50px;
+  padding: 15px;  
     position:fixed;  
     left:0px;  
     bottom:0px;  
     background-color:#FFFFFF;  
     width:100%;  
     z-index: 99; 
-}
+}*/
 
 .snap-right{
   width:230px;
@@ -325,7 +372,12 @@ padding-right:0;
 }
 
 /*user profile*/
-
+.user-name {
+  color: #00a6df;
+  font-family: 'Terembura', 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+  font-weight:bold;
+  
+}
 .user-stat-num {
   font-size: 1.2em;
   font-weight:bold;
@@ -355,6 +407,9 @@ color: #24B694;
 color: #D22042;
   }
 
+.user-tags .label {
+  line-height:2;
+}
 
 /* edit profile page */
 .profile-edit-subtitle {
@@ -363,6 +418,27 @@ color: #D22042;
     text-align: center;
     color: #999;
   }
+}
+
+.venues li >div {
+  height: 309px;
+}
+
+.venue-right {
+  background: #fff;
+border: 1px solid #d2d8d5;
+border-radius: 4px;
+}
+
+.today-hours {
+font-weight: 300;
+margin-top: -4px;
+margin-left: -15px;
+}
+
+.today-hours ul {
+  list-style: none;
+  padding-left: 16px;
 }
 
 .deals {
@@ -375,9 +451,18 @@ color: #D22042;
     /*border-top: 1px solid #e8e8e8;*/
   }
 }
+.deal-title {
+  font-family: 'Terembura', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #ed2853;
+}
 
 .deal-duration {
   color: #999;
+}
+
+.scores-box {
+  padding-top:20px;
+  padding-left: 0;
 }
 /* miscellaneous */
 .form-container { 
@@ -388,6 +473,13 @@ color: #D22042;
 .panel-deal .btn-group-sm a{
   color:#000;
 }
+
+.deal-slider{
+    opacity: 0.5;
+    padding: 15px;
+    font-size: 12px;
+}
+
 
 .debug_dump {
   clear: both;
@@ -412,3 +504,28 @@ color: #D22042;
   @extend .control-group;
   @extend .error;
 }*/
+
+/* overwriting slick buttons*/
+.slick-next {
+  color: #7f797b;
+}
+.slick-next:before {
+  color: #7f797b;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-right-side{ 
+    right: 2px; 
+    display:block;
+    }
+
+}
+
+@media screen and (min-width: 1200px) {
+  h1.home-title {
+    font-size: 60px;
+  }
+  h4.home-title {
+    font-size: 30px;
+  }
+}

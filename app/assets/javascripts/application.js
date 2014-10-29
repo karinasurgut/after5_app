@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require snap
+//= require slick
 //= require underscore
 //= require gmaps/google
 //= require_tree ./sitewide
