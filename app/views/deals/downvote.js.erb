@@ -1,0 +1,11 @@
+// if ($("#myModal").data('bs.modal').isShown) {
+// 	console.log("CAUGHT YA");
+// 	$('#myModal').modal('hide');
+// }
+// else {
+// 	console.log("MEHHHH");
+// }
+$('#myModal').modal('hide');
+$("#ajaxModal").show();
+$("#ajaxModal").html("<%= escape_javascript(render partial: 'shared/my_custom_flash', :flash => flash, locals: { :extrabtn => false }) %>");
+$('#myModal').modal();

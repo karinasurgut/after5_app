@@ -1,22 +1,45 @@
   <!-- body has the class "cbp-spmenu-push" -->
 <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
     <%= link_to image_tag("after5.png", alt: "After5"), root_path, id: "logo" %>         
-      <% if user_signed_in? %>            
-        <%= link_to "View Profile", user_path(current_user) %>
-        <%= link_to "Settings", interests_user_path(current_user) %>
+      <% if user_signed_in? %>       
+        <%= link_to user_path(current_user) do %>
+            <span class="glyphicon glyphicon-user"></span>   View Profile
+        <% end %>   
+        <%= link_to user_wishlist_path(current_user) do %>
+            <span class="glyphicon glyphicon-star"></span>   Your Wishlist
+        <% end %>  
+        <%= link_to interests_user_path(current_user) do %>
+            <span class="glyphicon glyphicon-cog"></span>   Settings
+        <% end %>
       <% else %>
-        <%= link_to "Sign Up", user_omniauth_authorize_path(:facebook) %>
+        <%= link_to user_omniauth_authorize_path(:facebook) do %>
+            <span class="glyphicon glyphicon-log-in"></span>   Signup/Login
+        <% end %>
       <% end %>
       <%# if current_user.admin? %>
-        <%= link_to "Add Venue", new_venue_path %>
+        <%= link_to new_venue_path do %>
+            <span class="glyphicon glyphicon-plus-sign"></span>   Add Venue
+        <% end %>
       <%# end %>
-      <%= link_to "Search", search_path %>
-      <%= link_to "Venue Index", venues_path %>
-      <%= link_to "About", about_path %>
-      <%= link_to "Contact", contact_path %>
-      <%= link_to "Terms of Service", terms_path %>
+      <%= link_to search_path do %>
+        <span class="glyphicon glyphicon-search"></span>   Search Deals
+      <% end %>
+      <%= link_to venues_path do %>
+        <span class="glyphicon glyphicon-th-large"></span>   Venues
+      <% end %>
+      <%= link_to about_path do %>
+        <span class="glyphicon glyphicon-info-sign"></span>   About
+      <% end %>
+      <%= link_to contact_path do %>
+        <span class="glyphicon glyphicon-envelope"></span>   Contact
+      <% end %>
+      <%= link_to terms_path do %>
+        <span class="glyphicon glyphicon-book"></span>   Terms of Service
+      <% end %>
       <% if user_signed_in? %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <span class="glyphicon glyphicon-log-out"></span>   Logout
+        <% end %>
       <% end %>
 </nav>
 <header class="navbar navbar-inverse" role="navigation"><!--id="content_head" navbar-fixed-top-->

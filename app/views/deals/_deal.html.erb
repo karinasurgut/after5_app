@@ -5,7 +5,7 @@
   		<div class="col-xs-8">
 	  		<h3 class="deal-title"><%= deal.title %></h3>
 	  		<%= deal_duration_for(deal) %>
-	  		<h4><%= deal.venue.name %> <span class="glyphicon glyphicon-cutlery"></span></h4>
+	  		<h4><%= deal.venue.name %> <span class="glyphicon glyphicon-cutlery"></span><span class="glyphicon glyphicon-glass"></span></h4>
 			<p><%= raw deal.tag_list.map { |t| link_to "#" + t, tag_path(t) }.join(' ') %>
 		</div>
 		<div class="col-xs-4 scores-box">
@@ -17,7 +17,7 @@
 	  		<% end %>
 	  		<%#= render 'shared/checkin_form' if user_signed_in? %>
 			<button type="button" class="btn btn-default btn-sm">
-			 <span class="glyphicon glyphicon-star"></span><%= link_to "Here now?", checkin_deal_path(deal), method: :put %>
+			 <span class="glyphicon glyphicon-star"></span><%= link_to "Here now?", checkin_deal_path(id: deal), method: :put, remote: true %>
 			</button>
 		</div>
 	</div>
@@ -32,12 +32,12 @@
 	<div class="btn-group-sm">
 		<%# if current_user.find_up_voted_items.include?(deal) %>
 			<button type="button" class="btn btn-default btn-lg">
-			 <span class="glyphicon glyphicon-heart-empty"></span><br/><%= link_to "Love", like_deal_path(deal), method: :put %>
+			 <span class="glyphicon glyphicon-heart-empty"></span><br/><%= link_to "Love", like_deal_path(id: deal), method: :put, remote: true %>
 			</button>
 		
 		<%# if current_user.find_down_voted_items.include?(deal) %>
 			<button type="button" class="btn btn-default btn-lg">
-			 <span class="glyphicon glyphicon-flash"></span><br/><%= link_to "Not a fan", dislike_deal_path(deal), method: :put %>
+			 <span class="glyphicon glyphicon-flash"></span><br/><%= link_to "Not a fan", dislike_deal_path(id: deal), method: :put, remote: true %>
 			</button>
 		<% if current_user.find_liked_items.include?(deal) %>
 			<button type="button" class="btn btn-warning btn-lg" >

@@ -18,16 +18,33 @@ class DealsController < ApplicationController
     @lng = cookies[:lat_lng].split("|")[1]
     @deals = Deal.search params[:search], :geo => [@lat,@lng],
     :order => "geodist ASC"
-    # if params[:tag]
-    #   @deals = Deal.tagged_with(params[:tag])
-    # end
-      #@deals= Deal.all
-    # @hash = Gmaps4rails.build_markers(@deals) do |deal, marker|
-    #   marker.lat deal.venue.latitude
-    #   marker.lng deal.venue.longitude
-    #   marker.infowindow "<span class='glyphicon glyphicon-cutlery'></span>
-    #   <p style='color:red;'>#{deal.title}</p><i>#{deal.venue.name}</i><p>#{deal.content}</p>"
-    # end  
+    if params[:tag]
+      @deals = Deal.tagged_with(params[:tag])
+    end
+      @deals= Deal.all
+    @hash = Gmaps4rails.build_markers(@deals) do |deal, marker|
+      marker.lat deal.venue.latitude
+      marker.lng deal.venue.longitude
+      marker.title "#{deal.venue.name}"
+      marker.infowindow "<span class='glyphicon glyphicon-cutlery'></span>
+      <p style='color:red;'>#{deal.title}</p><i>#{deal.venue.name}</i><p>#{deal.content}</p>"
+      # marker.picture({
+      #    :url => "assets/pin3.png",
+      #    :width  => "32",
+      #    :height => "32"
+      # })
+    end
+    @hash += Gmaps4rails.build_markers(current_user) do |user, marker|
+      marker.lat @lat
+      marker.lng @lng
+      marker.infowindow "<span class='glyphicon glyphicon-user'></span>
+      <p style='color:red;'>This is you!</p>"
+      marker.picture({
+         :url => "assets/pin.png",
+         :width  => "32",
+         :height => "32"
+      })
+    end  
 end
 
   def destroy
@@ -55,13 +72,23 @@ end
   def upvote
     @deal = Deal.find(params[:id])
     @deal.upvote_by current_user
-    redirect_to venue_path(@deal.venue)
+    session[:return_to] ||= request.referer
+    flash[:success] = "You liked the deal!"
+     respond_to do |format|
+      format.js
+      format.html { redirect_to session.delete(:return_to) } #redirect_to venue_path(@deal.venue) }
+    end
   end
 
   def downvote
     @deal = Deal.find(params[:id])
     @deal.downvote_by current_user
-    redirect_to venue_path(@deal.venue)
+    session[:return_to] ||= request.referer
+     flash[:success] = "Thank you for your feedback!"
+     respond_to do |format|
+      format.js
+      format.html { redirect_to session.delete(:return_to) }#redirect_to venue_path(@deal.venue) }
+    end
   end
 
   def want
@@ -78,12 +105,15 @@ end
     @checkin = Checkin.create!(deal: @deal, user: current_user)
     if @checkin.save
       flash[:success] = "Deal saved to your profile!"
-      redirect_to venue_path(@deal.venue)
     else
       @checkin = []
       flash[:error] = "Something went wrong when checking in for the deal"
-      redirect_to venue_path(@deal.venue)
     end
+    respond_to do |format|
+      format.js
+      format.html { redirect_to venue_path(@deal.venue) }
+    end
+    
   end
 
   private

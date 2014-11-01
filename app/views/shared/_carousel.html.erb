@@ -9,6 +9,8 @@
 	  <% v = Venue.find_by(id: d.venue_id) %>
       <div><div><%= link_to image_tag( "#{v.image}", alt: "#{d.title}", class: "img-circle img-responsive"), venue_path(v) %><br/><%= content_tag("p", "#{d.title}", class: "deal-carousel-title", style: "margin-top: -20px; font-weight: 400;") %></div></div>
 	<% end %>
+<% else %>
+<div><div style="padding: 20px;">Bummer! No deals today, but check out other days!</div></div>
 <% end %>
 	  </div>
 	</div>

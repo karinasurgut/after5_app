@@ -47,7 +47,7 @@
   	<div class="featured-daypicker">
   	<div class="btn-group btn-group-justified">
  	  <div class="btn-group">
-		<button type="button" class="btn btn-default">Today</button>
+		<%= link_to "Today", fetch_deals_path( day: Date.current.to_date ), remote: true, class: "btn btn-default" %>
 		  </div>
   	  <div class="btn-group">
   	  	<%= link_to "Tomorrow", fetch_deals_path( day: (Date.current + 1.day).to_date ), remote: true, class: "btn btn-default" %>

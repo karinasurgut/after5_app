@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require snap
 //= require slick
 //= require underscore
 //= require gmaps/google

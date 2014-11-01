@@ -1,0 +1,3 @@
+$("#ajaxModal").show();
+$("#ajaxModal").html("<%= escape_javascript(render partial: 'shared/my_custom_flash', :flash => flash, locals: { :extrabtn => true, :deal => @deal }) %>");
+$('#myModal').modal();

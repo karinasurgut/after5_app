@@ -38,16 +38,21 @@ class Deal < ActiveRecord::Base
     def self.deal_carousel(day)
   	@feed = []
   	Deal.all.each do |deal| 
-	  	if (deal.start_date == deal.end_date) && (deal.start_date.to_date == day.to_date)
+	  	if (deal.start_date == deal.end_date && deal.start_date.to_date == day.to_date)
 	  		@feed << deal
 	  	else
-		  if deal.end_date.nil?	|| (deal.end_date.to_date - day.to_date).to_i >= 0
-		  	if ((deal.start_date.to_date - Time.now.to_date).to_i < 0) && !(deal.durations.find_by(week_day: day.to_date.wday).nil?)
-			  @feed << deal
+		  if (deal.end_date.nil? || (deal.end_date.to_date - day.to_date).to_i >= 0)
+		  	if (deal.start_date.to_date - day.to_date).to_i < 0 
+		  		if (deal.durations.any? && !deal.durations.find_by(week_day: day.to_date.wday).nil?)
+			  			@feed << deal
+			  	elsif !deal.durations.any?
+			  	  @feed << deal
+			  	end
 			end
 		  end
 	  	end	
 	end
+	@feed
   end
 
     # def attributes_nil?(attrs)

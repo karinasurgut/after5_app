@@ -19,10 +19,13 @@
       <p class="alert alert-danger"><%= alert %></p>-->
     <%# end %>
     <% if flash %>
-      <% flash.each do |key, value| %>
-          <%= content_tag(:div, value, class: "alert alert-#{key}") %>
-      <% end %>
+      <%# flash.each do |key, value| %>
+          <%# key ||= success %> 
+          <%#= content_tag(:div, value, class: "alert alert-#{key}") %>
+      <%= render :partial => 'shared/my_custom_flash', :flash => flash, locals: { :extrabtn => false } %>
+      <%# end %>
     <% end %>
+    <div id = "ajaxModal"></div>
 		<%= yield %>
     <%= render 'layouts/footer' %>
     <%= debug(params) if Rails.env.development? %>
@@ -33,88 +36,6 @@
   getGeoLocation();
 </script>
 <%- end %>
-<script type="text/javascript">
-//     // settings {
-//     //   tapToClose: false;
-//     //   touchToDrag: false;
-//     // }
-//     //var check = true;
-//     /* instantiate snapper object, and define pane to slide left or right */
-//     var snapper = new Snap({
-//         element: document.getElementById('content')
-//     });
-
-//     myToggleButton = document.getElementById('open-left');
-
-//     myToggleButton.addEventListener('click', function(){
-
-//     if( snapper.state().state=="left" ){
-//         snapper.close();
-//     } else {
-//         snapper.open('left');
-//     }
-
-// });
-
-//     // var snapper_head = new Snap({
-//     //   element: document.getElementById('content_head')
-//     // });
-
-
-//     /*  define cross-browser event handler. */
-//     // var addEvent = function addEvent(element, eventName, func) {
-//     //     if (element.addEventListener) {
-//     //         return element.addEventListener(eventName, func, false);
-//     //     } else if (element.attachEvent) {
-//     //         return element.attachEvent("on" + eventName, func);
-//     //     }
-//     // };
-
-//     // /* when the element with id 'open-left' is clicked, use the public snapper.open() method to slide the pane rightward, to reveal the LEFT menu */
-//     // addEvent(document.getElementById('open-left'), 'click', function() {
-//     //   if(check == true){
-//     //     snapper.open('left');
-//     //     //snapper_head.open('left');
-//     //     //document.getElementById("snap-drawers").style.display = "block";
-//     //     check = false;
-//     //   }
-//     //   else{
-//     //     snapper.close();
-//     //     //snapper_head.close();
-//     //     //document.getElementById("snap-drawers").style.display = "none";
-//     //     check = true;
-//     //   }
-        
-//     // });
-
-//     // addEvent(document.getElementById('open-right'), 'click', function() {
-//     //   if(check == true){
-//     //     snapper.open('right');
-//     //     //document.getElementById("snap-drawers").style.display = "block";
-//     //     check = false;
-//     //   }
-//     //   else{
-//     //     snapper.close();
-//     //     //document.getElementById("snap-drawers").style.display = "none";
-//     //     check = true;
-//     //   }
-        
-//     // });
-
-//     /* Prevent Safari opening links when viewing as a Mobile App */
-//     (function(a, b, c) {
-//         if (c in b && b[c]) {
-//             var d, e = a.location,
-//                     f = /^(a|html)$/i;
-//             a.addEventListener("click", function(a) {
-//                 d = a.target;
-//                 while (!f.test(d.nodeName))
-//                     d = d.parentNode;
-//                 "href" in d && (d.href.indexOf("http") || ~d.href.indexOf(e.host)) && (a.preventDefault(), e.href = d.href)
-//             }, !1)
-//         }
-//     })(document, window.navigator, "standalone");
-</script>
 <script>
   var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
         menuRight = document.getElementById( 'cbp-spmenu-s2' ),
@@ -183,6 +104,9 @@ showLeftPush.onclick = function() {
 // }
 </script>
 <script>
+$('#myModal').modal();
+$("#ajaxModal").hide();
+
   var search = false;
   //$("#search-box").hide();
   $(document).ready(function(){
@@ -190,16 +114,6 @@ showLeftPush.onclick = function() {
       $("#search-box").slideToggle("fast")
     });
   });
-</script>
-<script type="text/javascript">
-//         // Call the actual slider function (DON'T REMOVE)
-//         var disqus_shortname = 'slickcarousel';
-
-//         (function() {
-//             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-//             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-//             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-//         })();
 </script>
 </body>
 </html>
