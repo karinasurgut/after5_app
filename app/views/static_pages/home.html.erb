@@ -27,7 +27,7 @@
 		<button type="button" class="close" data-dismiss="alert">
 		<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 		</button>
-		<h4>Check out these deals near you</h4>
+		<h4 id ="test-aj">Check out these deals near you</h4>
 		<div class= "deal-box">
 			<%#= render Deal.first %>
 			<p style="text-align:center;">
@@ -50,7 +50,8 @@
 		<button type="button" class="btn btn-default">Today</button>
 		  </div>
   	  <div class="btn-group">
-		<button type="button" class="btn btn-default">Tomorrow</button>
+  	  	<%= link_to "Tomorrow", fetch_deals_path( day: (Date.current + 1.day).to_date ), remote: true, class: "btn btn-default" %>
+		<!-- <button type="button" class="btn btn-default">Tomorrow</button> -->
 		  </div>
   	  <div class="btn-group">
 		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -58,30 +59,27 @@
 		  <span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu">
-			<% [2,3,4,5,6,7,8].each do |day| %>
-			  <li><%= link_to (Time.now.to_date + day.days).strftime("%A %e %b"), '#', class: ""%></li>
+			<% [2,3,4,5,6,7,8].each do |d| %>
+			<% day = (Date.current + d.days).to_date %>
+			  <li><%= link_to (Time.now.to_date + d.days).strftime("%A %e %b"), fetch_deals_path( day: "#{day}" ), remote: true %></li>
 			<% end %>
 		</ul>
 		  </div>
 	</div>
 	<!-- slick slider -->
-	<div class="container-fluid deal-carousel" style="inline-flex">
-		<div class="pull-left date">
-			<p class="left-date">21</p><p class="left-month">Oct</p><p class="left-week">Sat</p>
+	<div class="container-fluid deal-carousel" id = "dealcarousel" style="inline-flex">
+		<!-- <div class="pull-left date">
+			<p class="left-date">31</p><p class="left-month">Oct</p><p class="left-week">Fri</p>
 		</div>
 		<div id="deal-container">
 			<div class="content">
-			  <div class="slider responsive">
-				<div><div><a href = "#"><img src="assets/misspeaches.jpg" class="img-circle img-responsive" /></a></div></div>
-				<div><div><a href = "#"><img src="assets/misspeaches.jpg" class="img-circle img-responsive" /></a></div></div>
-				<div><div><a href = "#"><img src="assets/misspeaches.jpg" class="img-circle img-responsive" /></a></div></div>
-				<div><div><a href = "#"><img src="assets/misspeaches.jpg" class="img-circle img-responsive" /></a></div></div>
-				<div><div><a href = "#"><img src="assets/misspeaches.jpg" class="img-circle img-responsive" /></a></div></div>
-				<div><div><a href = "#"><img src="assets/misspeaches.jpg" class="img-circle img-responsive" /></a></div></div>
-				<div><div><a href = "#"><img src="assets/misspeaches.jpg" class="img-circle img-responsive" /></a></div></div>				
-			  </div>	
+			  <div class="slider responsive" id = "deal_slider"> -->
+				<%= render partial: 'shared/carousel', locals: {day: @day, feed: @feed} %>
+				<!-- <div><div><a href = "#"><img src="assets/misspeaches.jpg" class="img-circle img-responsive" /></a></div></div>
+				<div><div><a href = "#"><img src="assets/misspeaches.jpg" class="img-circle img-responsive" /></a></div></div>	 -->
+			<!--   </div>	
 			</div>
-		</div>
+		</div> -->
 	</div>
 	<!-- slick slider -->
   </div>

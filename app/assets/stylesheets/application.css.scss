@@ -5,7 +5,7 @@
 @import "custom";
 @font-face {
   font-family: 'Terembura';    
-  src: url('/assets/terembura.ttf');
+  src: data-url('/assets/terembura.ttf');
   font-weight: normal;
   font-style: normal;
 }

@@ -1,0 +1,15 @@
+<div class="pull-left date">
+			<p class="left-date"><%= day.strftime("%e") %></p><p class="left-month"><%= day.strftime("%b") %></p><p class="left-week"><%= day.strftime("%A").to_s[0..2] %></p>
+</div>
+<div id="deal-container">
+	<div class="content">
+	  <div class="slider responsive" id = "deal_slider">
+<%	if feed.any? %>
+		<% feed.each do |d| %>
+	  <% v = Venue.find_by(id: d.venue_id) %>
+      <div><div><%= link_to image_tag( "#{v.image}", alt: "#{d.title}", class: "img-circle img-responsive"), venue_path(v) %><br/><%= content_tag("p", "#{d.title}", class: "deal-carousel-title", style: "margin-top: -20px; font-weight: 400;") %></div></div>
+	<% end %>
+<% end %>
+	  </div>
+	</div>
+</div>

@@ -24,8 +24,8 @@
   </div>
   <div class= "col-xs-6" style= "border-left: 3px solid #00a6df;">
 	<p class="user-stat-num">
-		<% if unique_venues_visited_count(current_user) > 0 %>
-		  <%= link_to unique_venues_visited_count(current_user), user_visited_path(current_user), class: "user-number user-number-visited" %><br/><%= "spot".pluralize(unique_venues_visited_count(current_user)) %> visited
+		<% if current_user.unique_venues_visited_count > 0 %>
+		  <%= link_to current_user.unique_venues_visited_count, user_visited_path(current_user), class: "user-number user-number-visited" %><br/><%= "spot".pluralize(current_user.unique_venues_visited_count) %> visited
 		<% else %>
 			<span class="user-number user-number-zero">0</span><br/> spots visited
 		<% end %>
@@ -38,11 +38,19 @@
 		  <span class="user-number user-number-zero">0</span><br/> deals this week
 		<% end %>
 	</p>
-	<p class="user-stat-num">
+	<!-- <p class="user-stat-num">
 		<% if current_user.find_up_voted_items.count > 0 %>
 		  <span class="user-number user-number-liked"><%= current_user.find_up_voted_items.count %></span><br/>liked <%= "deal".pluralize(current_user.find_up_voted_items.count) %> liked
 		<% else %>
 		  <span class="user-number user-number-zero">0</span><br/> deals liked
+		<% end %>
+	</p> -->
+	<p class="user-stat-num">
+		<% ubadges = current_user.badges.count %>
+		<% if ubadges > 0 %>
+		  <span class="user-number user-number-liked"><%= ubadges %></span><br/><%= "badge".pluralize(dealsweek) %> awarded
+		<% else %>
+		  <span class="user-number user-number-zero">0</span><br/> badges awarded
 		<% end %>
 	</p>
   </div>

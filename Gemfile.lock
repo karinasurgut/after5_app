@@ -34,6 +34,7 @@ GEM
     acts-as-taggable-on (3.4.2)
       activerecord (>= 3.2, < 5)
     acts_as_votable (0.10.0)
+    ambry (0.3.1)
     arel (4.0.2)
     autoprefixer-rails (3.1.2.20141016)
       execjs
@@ -118,6 +119,8 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    merit (2.2.0)
+      ambry (~> 0.3.0)
     middleware (0.1.0)
     mime-types (1.25.1)
     mini_portile (0.6.0)
@@ -262,6 +265,7 @@ DEPENDENCIES
   gmaps4rails
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)
+  merit
   mysql2 (~> 0.3.13)
   omniauth-facebook
   pg (= 0.15.1)

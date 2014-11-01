@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
   <%= render 'layouts/shim' %>
 </head>
-<body>
+<body class = "cbp-spmenu-push">
 	<!-- <div class="snap-drawers visible-xs visible-sm" id="snap-drawers">
             <div class="snap-drawer snap-drawer-left">
                 <div>
@@ -142,6 +142,73 @@
 //     })(document, window.navigator, "standalone");
 </script>
 <script>
+  var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+        menuRight = document.getElementById( 'cbp-spmenu-s2' ),
+        // menuTop = document.getElementById( 'cbp-spmenu-s3' ),
+        // menuBottom = document.getElementById( 'cbp-spmenu-s4' ),
+        showLeft = document.getElementById( 'showLeft' ),
+        // showRight = document.getElementById( 'showRight' ),
+        // showTop = document.getElementById( 'showTop' ),
+        // showBottom = document.getElementById( 'showBottom' ),
+        showLeftPush = document.getElementById( 'showLeftPush' ),
+        //showRightPush = document.getElementById( 'showRightPush' ),
+        body = document.body;
+ 
+// showLeft.onclick = function() {
+//     classie.toggle( this, 'active' );
+//     classie.toggle( menuLeft, 'cbp-spmenu-open' );
+//     disableOther( 'showLeft' );
+// };
+// showRight.onclick = function() {
+//     classie.toggle( this, 'active' );
+//     classie.toggle( menuRight, 'cbp-spmenu-open' );
+//     disableOther( 'showRight' );
+// };
+// showTop.onclick = function() {
+//     classie.toggle( this, 'active' );
+//     classie.toggle( menuTop, 'cbp-spmenu-open' );
+//     disableOther( 'showTop' );
+// };
+// showBottom.onclick = function() {
+//     classie.toggle( this, 'active' );
+//     classie.toggle( menuBottom, 'cbp-spmenu-open' );
+//     disableOther( 'showBottom' );
+// };
+showLeftPush.onclick = function() {
+    classie.toggle( this, 'active' );
+    classie.toggle( body, 'cbp-spmenu-push-toright' );
+    classie.toggle( menuLeft, 'cbp-spmenu-open' );
+    disableOther( 'showLeftPush' );
+};
+// showRightPush.onclick = function() {
+//     classie.toggle( this, 'active' );
+//     classie.toggle( body, 'cbp-spmenu-push-toleft' );
+//     classie.toggle( menuRight, 'cbp-spmenu-open' );
+//     disableOther( 'showRightPush' );
+// };
+ 
+// function disableOther( button ) {
+//     if( button !== 'showLeft' ) {
+//         classie.toggle( showLeft, 'disabled' );
+//     }
+//     if( button !== 'showRight' ) {
+//         classie.toggle( showRight, 'disabled' );
+//     }
+//     if( button !== 'showTop' ) {
+//         classie.toggle( showTop, 'disabled' );
+//     }
+//     if( button !== 'showBottom' ) {
+//         classie.toggle( showBottom, 'disabled' );
+//     }
+//     if( button !== 'showLeftPush' ) {
+//         classie.toggle( showLeftPush, 'disabled' );
+//     }
+//     if( button !== 'showRightPush' ) {
+//         classie.toggle( showRightPush, 'disabled' );
+//     }
+// }
+</script>
+<script>
   var search = false;
   //$("#search-box").hide();
   $(document).ready(function(){
@@ -151,14 +218,14 @@
   });
 </script>
 <script type="text/javascript">
-        // Call the actual slider function (DON'T REMOVE)
-        var disqus_shortname = 'slickcarousel';
+//         // Call the actual slider function (DON'T REMOVE)
+//         var disqus_shortname = 'slickcarousel';
 
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
+//         (function() {
+//             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+//             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+//             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+//         })();
+</script>
 </body>
 </html>

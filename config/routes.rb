@@ -30,6 +30,7 @@ After5::Application.routes.draw do
   match '/venues/:id/new',     to: 'venues#deal',          as: :new_deal,        via: 'get'
   match 'deals/tags/:tag',           to: 'deals#search',   as: :tag,             via: 'get'
   match 'venues/tags/:tag',           to: 'venues#index',  as: :venue_tag,       via: 'get'
+  match "/fetch_deals",         to: 'static_pages#from_carousel', as: :fetch_deals,    via: 'get'
   #match '/venues/new',     to: 'venues#new',           via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

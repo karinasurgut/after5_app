@@ -22,6 +22,7 @@ gem 'thinking-sphinx', '~> 3.1.1'
 gem 'flying-sphinx',   '1.2.0'
 gem 'snap_js-rails'
 gem 'slick_rails'
+gem 'merit'
 
 group :development, :test do
   gem 'rspec-rails', '2.13.1'

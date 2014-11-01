@@ -67,7 +67,10 @@ end
   def want
     @deal = Deal.find(params[:id])
     @deal.liked_by current_user
-    redirect_to venue_path(@deal.venue)
+    respond_to do |format|
+      format.js
+      #format.html { venue_path(@deal.venue) }
+    end
   end
 
   def checkin 
@@ -83,11 +86,10 @@ end
     end
   end
 
-
   private
 
     def deal_params
-      params.require(:deal).permit(:content, :title, :venue_id, :tag_list, :start_date, :end_date,
+      params.require(:deal).permit(:content, :title, :venue_id, :tag_list, :start_date, :end_date, :day,
                                   checkins_attributes: [:deal_id, :user_id],
                                   durations_attributes: [:deal_id, :week_day, :from_time, :till_time, :all_day])
     end

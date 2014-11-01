@@ -1,0 +1,50 @@
+$("#dealcarousel").html("<%= escape_javascript(render partial: 'shared/carousel', locals: { feed: @feed1, day: @day1 }) %>")
+//$("#deal_slider").slick();
+$('.responsive').slick({
+        dots: false,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        responsive: [{
+            breakpoint: 1150,
+            settings: {
+                slidesToShow: 6,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: false
+            }
+        }, {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: false
+            }
+        }, {
+          breakpoint: 800,
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 640,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 500,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+            }
+    	}, {
+    		breakpoint: 400,
+    		settings: {
+    			slidesToShow: 2,
+    			slidesToScroll: 1
+    		}
+        }]
+    });
