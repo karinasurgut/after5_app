@@ -22,7 +22,9 @@
 		</button>
 		<h3 id ="test-aj center">Looking for a quick fix? Check out this deal near you!</h3>
 		<div class= "deal-box">
-			<%= render partial: 'deals/closest_deal', locals: { deal: Deal.find(closest_deal) } %>
+			<% @closest_deal = closest_deal %>
+			<% @closest =  Deal.find(@closest_deal) %>
+			<%= render partial: 'deals/closest_deal', locals: { deal: @closest } %>
 			<%#= render Deal.first %>
 		</div>
 	</div>
@@ -82,18 +84,18 @@
   <div class="row featured">
     <div class="col-xs-6 col-sm-3">
     	<h4>Melbourne Cup</h4>
-      <%= link_to image_tag("melbournecup.jpg", alt: "Melbourne cup", class: "img-thumbnail", style: "height:95px;"), 'deals/tags/Melbourne%20Cup' %>
+      <%= link_to image_tag("melbournecup.jpg", alt: "Melbourne cup", class: "img-thumbnail", style: "height:177px;"), 'deals/tags/Melbourne%20Cup' %>
     </div>
     <div class="col-xs-6 col-sm-3">
     <h4>Pubs</h4>
-      <%= link_to image_tag("coopersarms.jpg", alt: "Pubs", class: "img-thumbnail", style: "height:95px;"), 'deals/tags/Pub' %>
+      <%= link_to image_tag("coopersarms.jpg", alt: "Pubs", class: "img-thumbnail"), 'deals/tags/Pub' %>
     </div>
     <div class="col-xs-6 col-sm-3">
     	<h4>Live Music</h4>
-	  <%= link_to image_tag("corridor.jpg", alt: "Live Music", class: "img-thumbnail", style: "height:95px;"), 'deals/tags/Music' %>
+	  <%= link_to image_tag("corridor.jpg", alt: "Live Music", class: "img-thumbnail"), 'deals/tags/Music' %>
 	</div>
     <div class="col-xs-6 col-sm-3">
     	<h4>Outdoor Dining</h4>
-      <%= link_to image_tag("zanzibar.jpg", alt: "Outdoor Dining", class: "img-thumbnail", style: "height:95px;"), 'deals/tags/Outdoor%20Dining' %>
+      <%= link_to image_tag("zanzibar.jpg", alt: "Outdoor Dining", class: "img-thumbnail"), 'deals/tags/Outdoor%20Dining' %>
     </div>
   </div>

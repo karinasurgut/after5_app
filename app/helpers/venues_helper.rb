@@ -48,8 +48,9 @@ module VenuesHelper
         @closest_venues = Venue.near([-33.873651,151.2068896])
       end
       @closest_venues.each do |v|
-      	@v_deals = v.deals.deal_carousel(Date.current.to_date)
-      	break @v_deals unless @v_deals.nil?
+        @v = Venue.find(v)
+      	@v_deals = @v.deals.deal_carousel(Date.current.to_date)
+      	break @v_deals unless @v_deals.empty?
       end
   	  @v_deals.first
      #  @todaydeals = Deal.deal_carousel(Date.current.to_date)

@@ -1,22 +1,22 @@
 <div class="row center stats-row">
   <div class="col-xs-6">
 	<p class="user-stat-num">
-		<% if current_user.totalrateddeals > 0 %>
-		<span class="user-number user-number-rated"><%= current_user.totalrateddeals %></span><br/><%= "deal".pluralize(current_user.totalrateddeals) %> rated
+		<% if @user.totalrateddeals > 0 %>
+		<span class="user-number user-number-rated"><%= @user.totalrateddeals %></span><br/><%= "deal".pluralize(@user.totalrateddeals) %> rated
 		<% else %>
 		<span class="user-number user-number-zero">0</span><br/> deals rated
 		<% end %>
 	</p>
 	<p class="user-stat-num">
-		<% if current_user.checkins.count > 0 %>
-		  <%= link_to current_user.checkins.count, user_checkins_path(current_user), class: "user-number user-number-checkins" %><br/><%= "deal".pluralize(current_user.checkins.count) %> checked out
+		<% if @user.checkins.count > 0 %>
+		  <%= link_to @user.checkins.count, user_checkins_path(@user), class: "user-number user-number-checkins" %><br/><%= "deal".pluralize(@user.checkins.count) %> checked out
 		<% else %>
 		  <span class="user-number user-number-zero">0</span><br/> deals checked out
 		<% end %>
 	</p>
 	<p class="user-stat-num">
-		<% if current_user.find_liked_items.count > 0 %>
-		<%= link_to current_user.find_liked_items.count, user_wishlist_path(current_user), class: "user-number user-number-wanted" %><br/><%= "deal".pluralize(current_user.find_liked_items.count) %> wanted
+		<% if @user.find_liked_items.count > 0 %>
+		<%= link_to @user.find_liked_items.count, user_wishlist_path(@user), class: "user-number user-number-wanted" %><br/><%= "deal".pluralize(@user.find_liked_items.count) %> wanted
 		<% else %>
 			<span class="user-number user-number-zero">0</span><br/> deals wanted
 		<% end %>
@@ -24,14 +24,14 @@
   </div>
   <div class= "col-xs-6" style= "border-left: 3px solid #00a6df;">
 	<p class="user-stat-num">
-		<% if current_user.unique_venues_visited_count > 0 %>
-		  <%= link_to current_user.unique_venues_visited_count, user_visited_path(current_user), class: "user-number user-number-visited" %><br/><%= "spot".pluralize(current_user.unique_venues_visited_count) %> visited
+		<% if @user.unique_venues_visited_count > 0 %>
+		  <%= link_to @user.unique_venues_visited_count, user_visited_path(@user), class: "user-number user-number-visited" %><br/><%= "spot".pluralize(@user.unique_venues_visited_count) %> visited
 		<% else %>
 			<span class="user-number user-number-zero">0</span><br/> spots visited
 		<% end %>
 	</p>
 	<p class="user-stat-num">
-		<% dealsweek = current_user.checkins.where("created_at >= ?", 1.week.ago.utc).order("created_at DESC").to_a.count %>
+		<% dealsweek = @user.checkins.where("created_at >= ?", 1.week.ago.utc).order("created_at DESC").to_a.count %>
 		<% if dealsweek > 0 %>
 		  <span class="user-number user-number-visited-week"><%= dealsweek %></span><br/><%= "deal".pluralize(dealsweek) %> this week
 		<% else %>
@@ -39,14 +39,14 @@
 		<% end %>
 	</p>
 	<!-- <p class="user-stat-num">
-		<% if current_user.find_up_voted_items.count > 0 %>
-		  <span class="user-number user-number-liked"><%= current_user.find_up_voted_items.count %></span><br/>liked <%= "deal".pluralize(current_user.find_up_voted_items.count) %> liked
+		<% if @user.find_up_voted_items.count > 0 %>
+		  <span class="user-number user-number-liked"><%= @user.find_up_voted_items.count %></span><br/>liked <%= "deal".pluralize(@user.find_up_voted_items.count) %> liked
 		<% else %>
 		  <span class="user-number user-number-zero">0</span><br/> deals liked
 		<% end %>
 	</p> -->
 	<p class="user-stat-num">
-		<% ubadges = current_user.badges.count %>
+		<% ubadges = @user.badges.count %>
 		<% if ubadges > 0 %>
 		  <span class="user-number user-number-liked"><%= ubadges %></span><br/><%= "badge".pluralize(dealsweek) %> awarded
 		<% else %>
