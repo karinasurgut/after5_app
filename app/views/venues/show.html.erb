@@ -37,7 +37,8 @@
               </ul>
             </div>
           <% end %>
-		  <% if (!current_user.nil? && current_user.id == 1) %>
+		  <%# if (!current_user.nil? && current_user.admin?) %>
+      <% if user_signed_in? %>
           <div>
             <%= link_to "Edit Venue", edit_venue_path(@venue) %>
             <span> | </span>

@@ -79,6 +79,6 @@ class VenuesController < ApplicationController
 
     
     def admin_user
-      redirect_to(root_url) unless (!current_user.nil? && current_user.id == 1)
+      redirect_to(root_url) unless user_signed_in? # (!current_user.nil? && current_user.admin?)
     end
 end
