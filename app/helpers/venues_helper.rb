@@ -1,7 +1,11 @@
 module VenuesHelper
 	def distance_to_user(venue)
+    if cookies[:lat_lng]
 	 @venue.distance_to(cookies[:lat_lng].split("|"), :km).round(2) if venue.geocoded?
+  else
+    @venue.distance_to([-33.873651,151.2068896], :km).round(2) if venue.geocoded?
 	end
+  end
 
 	def today_hours(venue)
 		today = Date.today.wday
@@ -34,4 +38,28 @@ module VenuesHelper
 	      @pagetitle = "All Venues"
 	    end  
     end
+
+
+
+    def closest_deal
+      if cookies[:lat_lng]
+        @closest_venues = Venue.near(cookies[:lat_lng].split("|"))
+      else
+        @closest_venues = Venue.near([-33.873651,151.2068896])
+      end
+      @closest_venues.each do |v|
+      	@v_deals = v.deals.deal_carousel(Date.current.to_date)
+      	break @v_deals unless @v_deals.nil?
+      end
+  	  @v_deals.first
+     #  @todaydeals = Deal.deal_carousel(Date.current.to_date)
+     #  @tdvenues = {}
+     #  @todaydeals.each do |d|
+     #  	v = Venue.find(d.venue_id)
+     #  	@tdvenues << v
+  	  # end
+  	  # @tdvenue = @tdvenues.near(cookies[:lat_lng].split("|")).first
+     #  @tdvenue.deals.dealcarousel(Date.current.to_date)
+    end
+
 end

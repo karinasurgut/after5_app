@@ -1,0 +1,43 @@
+	<div class="btn-group-sm">
+		<%# if current_user.find_up_voted_items.include?(deal) %>
+			<%= link_to(like_deal_path(id: deal1), { method: :put, remote: true, class: "btn btn-lg btn-default" }) do %>
+		      <span class="glyphicon glyphicon-heart"></span>  Love
+		    <% end %>
+			<!-- <button type="button" class="btn btn-default btn-lg">
+			 <span class="glyphicon glyphicon-heart-empty"></span><br/><%#= link_to "Love", like_deal_path(id: deal), method: :put, remote: true %>
+			</button> -->
+		
+		<%# if current_user.find_down_voted_items.include?(deal) %>
+			<%= link_to(dislike_deal_path(id: deal1), { method: :put, remote: true, class: "btn btn-lg btn-default" }) do %>
+		      <span class="glyphicon glyphicon-flash"></span>  Not a fan
+		    <% end %>
+			<!-- <button type="button" class="btn btn-default btn-lg">
+			 <span class="glyphicon glyphicon-flash"></span><br/><%#= link_to "Not a fan", dislike_deal_path(id: deal), method: :put, remote: true %>
+			</button> -->
+		<% if (!current_user.nil? && current_user.find_liked_items.include?(deal)) %>
+			<%= link_to(fave_deal_path(id: deal1), { method: :put, remote: true, class: "btn btn-lg btn-warning" }) do %>
+		      <span class="glyphicon glyphicon-star"></span>  Want
+		    <% end %>
+
+			<!-- <button type="button" class="btn btn-warning btn-lg" >
+			 <span class="glyphicon glyphicon-star"></span><br/><%#= link_to "Want", fave_deal_path(id: deal), method: :put, remote: true %>
+			</button> -->
+		<% else %>
+		    <span id="want-button">
+		    	<%= link_to(fave_deal_path(id: deal1), { method: :put, remote: true, class: "btn btn-sm btn-default" }) do %>
+		      <span class="glyphicon glyphicon-star"></span>  Want
+		    <% end %></span>
+			<!-- <span id="want-button"><button type="button" class="btn btn-default btn-sm">
+			 <span class="glyphicon glyphicon-star"></span><br/><%#= link_to "Want", fave_deal_path(id: deal), method: :put, remote: true %>
+			</button></span> -->
+		<% end %>
+		<!-- Small modal -->
+		<%= button_tag(type: 'button', class: "btn btn-default btn-lg", data: { toggle: "modal", target: "#bs-example-modal-sm-"+"#{deal1.id}"}) do %>
+		  <span class="glyphicon glyphicon-send"></span>  Share</button>
+		<% end %>
+		<!-- <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-send"></span>  Share</button> -->
+		<%= render partial: 'shared/modal', locals: { deal: deal1 }%>
+		<%#= link_to('#', { class: "btn btn-lg btn-default", data: { toggle: "modal", target: ".bs-example-modal-sm" }}) do %>
+		      <!-- <span class="glyphicon glyphicon-send"></span>  Share -->
+		 <%# end %>
+	</div>

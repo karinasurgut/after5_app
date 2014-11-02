@@ -8,7 +8,7 @@ After5::Application.routes.draw do
     end
   end
   resources :venues
-  resources :deals, except: [:new, :show, :index] do
+  resources :deals, except: [:new, :index] do
     member do
       put "like",     to: "deals#upvote"
       put "dislike",  to: "deals#downvote"

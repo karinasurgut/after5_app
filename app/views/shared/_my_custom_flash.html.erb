@@ -13,14 +13,20 @@
       <% if extrabtn %>
 	      <div class="modal-footer center">
 	      <h4>Did you like the deal?</h4>
-	        <button type="button" class="btn btn-default">
-			 <span class="glyphicon glyphicon-heart-empty"></span>  <%= link_to "Love", like_deal_path(id: deal), method: :put %>
-			</button>
+	        <%= link_to(like_deal_path(id: deal), { method: :put, class: "btn btn-lg btn-success" }) do %>
+            <span class="glyphicon glyphicon-heart"></span>  Love
+            <% end %>  
+	       <!--  <button type="button" class="btn btn-default">
+			 <span class="glyphicon glyphicon-heart-empty"></span>  <%#= link_to "Love", like_deal_path(id: deal), method: :put %>
+			</button> -->
 		
 		<%# if current_user.find_down_voted_items.include?(deal) %>
-			<button type="button" class="btn btn-default">
-			 <span class="glyphicon glyphicon-flash"></span>  <%= link_to "Not a fan", dislike_deal_path(id: deal), method: :put %>
-			</button>
+		    <%= link_to(dislike_deal_path(id: deal), { method: :put, class: "btn btn-lg btn-warning" }) do %>
+              <span class="glyphicon glyphicon-flash"></span>  Not a fan
+            <% end %>
+			<!-- <button type="button" class="btn btn-default">
+			 <span class="glyphicon glyphicon-flash"></span>  <%#= link_to "Not a fan", dislike_deal_path(id: deal), method: :put %>
+			</button> -->
 	      </div>
 	  <% end %>
     </div><!-- /.modal-content -->

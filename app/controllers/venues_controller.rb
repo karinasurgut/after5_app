@@ -1,5 +1,5 @@
 class VenuesController < ApplicationController
-  #before_action :admin_user, only: [:new, :edit, :create, :update, :destroy]
+  before_action :admin_user, only: [:new, :edit, :create, :update, :destroy]
   before_action :get_venue, except: [:index, :create, :new, :destroy]
   def new
   	@venue = Venue.new
@@ -79,6 +79,6 @@ class VenuesController < ApplicationController
 
     
     def admin_user
-      redirect_to(root_url) unless current_user.admin?
+      redirect_to(root_url) unless (!current_user.nil? && current_user.admin?)
     end
 end

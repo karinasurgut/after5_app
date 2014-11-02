@@ -3,7 +3,9 @@ function getGeoLocation() {
   navigator.geolocation.getCurrentPosition(setGeoCookie, handle_error, {enableHighAccuracy: true, timeout: 15000, maximumAge: 75000});
   }
   else {
-  	alert("Geolocation is not supported by this browser");
+  	console.log("Geolocation is not supported by this browser");
+    var cookie_val = -33.873651 + "|" + 151.2068896;
+    document.cookie = "lat_lng=" + escape(cookie_val);
   }
 }
 

@@ -166,13 +166,21 @@ h4.home-title{
     }
 }
 
+#fb_login_button { 
+    width: 80px; 
+}
+#fb_login_button span, 
+#fb_login_button iframe {.
+    width: 80px !important;
+    height: 25px !important;
+}
+
 /*searchbar on home and search pages*/
 .searchbar {
   border: 5px solid #e73363;
   width:100%;
   border-radius: 7px;
   box-shadow: 0px 0px 5px #000;
-  margin-bottom: 30px!important;
 }
 
 .searchbar-input {
@@ -184,7 +192,9 @@ h4.home-title{
   height: 50px;
   width:100%;
 }
-
+.searchbar-tags {
+  margin-bottom: 30px!important;
+}
 
 .featured div img{
 margin-bottom:10px;
@@ -452,6 +462,15 @@ margin-left: -15px;
     /*border-top: 1px solid #e8e8e8;*/
   }
 }
+
+.best-match .panel-body {
+  background-color: #EFFBFF;
+border: #00b3e5 2px solid;
+}
+
+.best-match .scores-box {
+  padding-top:0;
+}
 .deal-title {
   font-family: 'Terembura', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #ed2853;
@@ -510,6 +529,8 @@ margin-left: -15px;
 /* overwriting slick buttons*/
 .slick-next {
   color: #7f797b;
+  right: -8px;
+  margin-top: -40px;
 }
 .slick-next:before {
   color: #7f797b;

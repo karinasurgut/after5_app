@@ -36,7 +36,8 @@
 			<p>
 				<% current_user.badges.each do |badge| %>
 			       <%#= button_tag(type: 'submit', class: " btn btn-default sb_search", data: { container: "body", toggle: "popover", placement: "top", content: "#{badge.description}" }) do %>
-                     <%= image_tag (badge.custom_fields[:image]), :alt => badge.description, :float => "left", :style => "width:90px;"%>
+                     <%= image_tag (badge.custom_fields[:image]), :alt => badge.description, :float => "left", :style => "width:90px;"%><br/>
+                     <%= content_tag("p", "#{badge.name.split("-").join(" ").capitalize}") %>
                    <%# end %>
 			    <% end %>
 			</p>

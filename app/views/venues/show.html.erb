@@ -1,6 +1,5 @@
 <% provide(:title, @venue.name) %>
 <div class = "container" style= "padding-top: 30px;">
-<%= render 'shared/modal' %>
 <div class="row">
 <div class="col-lg-6">
 <div class="image-header">
@@ -38,7 +37,7 @@
               </ul>
             </div>
           <% end %>
-		  <%# if current_user.admin? %>
+		  <% if (!current_user.nil? && current_user.admin?) %>
           <div>
             <%= link_to "Edit Venue", edit_venue_path(@venue) %>
             <span> | </span>
@@ -48,12 +47,17 @@
       	  </div>
       	  <div class="hidden">Latitude: <%= @venue.latitude %><br/>
       	  	Longitude: <%= @venue.longitude %></div>
-          <%# end %>
+          <% end %>
         </div>
         <div class="col-xs-6 col-lg-6 center">
           <h4 style="color:darkgreen;"><%= distance_to_user(@venue) %> km</h4>
-          <p><a href="#"><span class="glyphicon glyphicon-map-marker"></span> Show map</a><p>
-    	  <button class="btn btn-primary btn-warning" type="button">Where next?</button>
+          <p><%= link_to "http://maps.google.com.au/maps?q="+ "#{@venue.latitude}" + "," + "#{@venue.longitude}" do %>
+              <span class="glyphicon glyphicon-map-marker"></span> Show map
+          <% end %>
+          <p>
+    	  <%= link_to(venue_path(@venue.nearbys(5).first), { class: "btn btn-primary btn-warning" }) do %>
+          <span class="glyphicon glyphicon-forward"></span>  Where next?
+        <% end %>
     	</div>
 	</div>
 </div><hr>
@@ -61,7 +65,7 @@
       <div class="deal-info">
 	    <h3 class="center">Current deals (<%= @venue.deals.count %>)</h3>
   		<ul class="deals">
-	      <%= render @deals %>
+	      <%= render(partial: "deals/deal", collection: @deals) %><%#.each { |d| render partial: "deals/deal", locals: { deal: d }} %>
 	    </ul>
 	  </div>   
     <% else %>

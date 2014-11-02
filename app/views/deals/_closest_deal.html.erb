@@ -1,0 +1,39 @@
+<div class="container">
+<div class="row">
+	<div class="col-sm-4">
+		<%= image_tag("#{deal.venue.image}", alt:"#{deal.venue.name}", class: "img-thumbnail") %>
+	</div>
+	<div class="col-sm-8">
+		<h3 class="deal-title"><%= deal.title %></h3>
+		<h4><%= link_to "#{deal.venue.name}", venue_path(deal.venue) %> <span class="glyphicon glyphicon-cutlery"></span><span class="glyphicon glyphicon-glass"></span></h4>
+		<p><span><%= deal_duration_for(deal) %></span>
+		<% if deal.score > 0 %>
+		   <span><span class="glyphicon glyphicon-fire"></span> Rating: <%= deal.score %></span>
+		<% end %>
+		<% if deal.userlikes > 0 %>
+		   <span><span class="glyphicon glyphicon-heart"></span> Likes: <%= deal.userlikes if deal.userlikes > 0%></span>
+		<% end %></p>
+	    <p><%= raw deal.tag_list.map { |t| link_to "#" + t, tag_path(t) }.join(' ') %>
+	    <p><%= deal.content %><br/>
+		<% if (!current_user.nil? && current_user.admin?) %>
+		  <%= link_to "edit", edit_deal_path(deal) %>
+		  <span> | </span>
+		  <%= link_to "delete", deal, method: :delete,
+		                                 data: { confirm: "Are you sure?" },
+		                                 title: deal.venue %>
+		<% end %></p>
+		<%= render partial: 'deals/deal_btn', locals: { deal1: deal} %> 
+	</div>
+</div>
+<div style="text-align:center;">
+  <!-- Large modal -->
+  	<%= link_to(checkin_deal_path(id: deal), { method: :put, remote: true, class: "btn btn-lg btn-primary" }) do %>
+      <span class="glyphicon glyphicon-home"></span>  Already here?
+    <% end %>  
+    <%= link_to(venue_path(deal.venue.nearbys(5).first), { class: "btn btn-lg btn-success" }) do %>
+      <span class="glyphicon glyphicon-forward"></span>  Where next?
+    <% end %>
+	<!-- <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Here now!</button>
+	<button class="btn btn-primary btn-success" type="button">Where next?</button> -->
+</div>
+</div>

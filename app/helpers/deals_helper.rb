@@ -42,4 +42,5 @@ module DealsHelper
   	end
   	content_tag("h4", "#{deal_duration}", class: "deal-duration")
   end
+
 end

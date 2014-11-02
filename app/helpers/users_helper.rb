@@ -1,6 +1,6 @@
 module UsersHelper
 
-  def userpic_for(user, type="small")
+  def userpic_for(user, type="square")
   	#options: small square normal large
   	userpic = user.image.split("=")[0] << "=#{type}"
     link_to image_tag(userpic, alt: user.name, class: "img-circle userpic"), user_path(user)

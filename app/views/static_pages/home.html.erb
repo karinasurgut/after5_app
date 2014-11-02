@@ -3,38 +3,27 @@
   <div class="container">  
   	<h1 class="home-title center">Your Happy Hour starts now!</h1> 
   	<h4 class="center home-title">Find the best beer, food &amp; drink deals near you</h4>                     
-	<% form_tag search_path, :method => 'get' do %>
-		  <p>
-		    <%= text_field_tag :search, params[:search] %>
-		    <%= submit_tag "Search", :name => nil %>
-		  </p>
-		<% end %>
-		<form id="ui_element" class="sb_wrapper navbar-form" role="search">
-	    <!--<p>
-			<input class="sb_input" type="text">
-			<input class="sb_search" type="submit" value="">
-		</p>-->
-		<div class="form-group input-group searchbar">
-		<input type="text" class="form-control sb_input searchbar-input" placeholder="E.g. wine, Newtown, Miss Peaches...">
-		<span class="input-group-btn">
-			<button type="submit" class="btn btn-default sb_search searchbar-btn"><span class="glyphicon glyphicon-search"></span></button>
-		</span>
+	<%= form_tag(search_path, method: "get", id: "ui-element", class: "sb_wrapper navbar-form", role: "search") do %>
+	  <%= label_tag(:search, "Search for:", class: "sr-only") %>
+	  <div class="form-group input-group searchbar">
+	    <%= text_field_tag(:search, params[:search], class: "form-control sb_input searchbar-input", placeholder: "E.g. wine, Newtown, Miss Peaches...") %> 
+	    <span class="input-group-btn">
+	  	  <%= button_tag(type: 'submit', class: " searchbar-btn btn btn-default sb_search") do %>
+            <span class='glyphicon glyphicon-search'></span>
+          <% end %>
+	    </span> 
 	  </div>
+	  <h4 class = "searchbar-tags">SEARCH TRENDS: <%= raw ActsAsTaggableOn::Tag.most_used(5).map { |t| link_to "#"+"#{t.name}", tag_path(t.id), class: "label label-success"  }.join(' ') %></h4>
 	  <%= render 'shared/dropdown' %>
-	</form>
-	<%= render 'shared/modal' %>
+	<% end %>
 	<div class="alert alert-info">
 		<button type="button" class="close" data-dismiss="alert">
 		<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 		</button>
-		<h4 id ="test-aj">Check out these deals near you</h4>
+		<h3 id ="test-aj center">Looking for a quick fix? Check out this deal near you!</h3>
 		<div class= "deal-box">
+			<%= render partial: 'deals/closest_deal', locals: { deal: Deal.find(closest_deal) } %>
 			<%#= render Deal.first %>
-			<p style="text-align:center;">
-			  <!-- Large modal -->
-			<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Here now!</button>
-			<button class="btn btn-primary btn-success" type="button">Where next?</button>
-			</p>
 		</div>
 	</div>
   </div>
@@ -96,15 +85,15 @@
       <%= link_to image_tag("melbournecup.jpg", alt: "Melbourne cup", class: "img-thumbnail", style: "height:95px;"), 'deals/tags/Melbourne%20Cup' %>
     </div>
     <div class="col-xs-6 col-sm-3">
-    <h4>Soul Kitchen</h4>
-      <%= image_tag("kuletos.jpg", alt: "Soul Kitchen", class: "img-thumbnail") %>
+    <h4>Pubs</h4>
+      <%= link_to image_tag("coopersarms.jpg", alt: "Pubs", class: "img-thumbnail", style: "height:95px;"), 'deals/tags/Pub' %>
     </div>
     <div class="col-xs-6 col-sm-3">
     	<h4>Live Music</h4>
-		<%= image_tag("kuletos.jpg", alt: "Live Music", class: "img-thumbnail") %>
+	  <%= link_to image_tag("corridor.jpg", alt: "Live Music", class: "img-thumbnail", style: "height:95px;"), 'deals/tags/Music' %>
 	</div>
     <div class="col-xs-6 col-sm-3">
-    	<h4>Cocktail Bars</h4>
-    	<%= image_tag("misspeaches.jpg", alt: "Cocktail Bars", class: "img-thumbnail") %>
+    	<h4>Outdoor Dining</h4>
+      <%= link_to image_tag("zanzibar.jpg", alt: "Outdoor Dining", class: "img-thumbnail", style: "height:95px;"), 'deals/tags/Outdoor%20Dining' %>
     </div>
   </div>

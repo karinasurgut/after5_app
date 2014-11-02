@@ -1,0 +1,36 @@
+<li class= "best-match">
+ <div class="panel panel-default panel-deal">
+  <div class="panel-body">
+  	<div class="row">
+  		<div class="col-xs-8">
+	  		<h3 class="deal-title"><%= deal.title %></h3>
+	  		<%= deal_duration_for(deal) %>
+	  		<h4><%= link_to "#{deal.venue.name}", venue_path(deal.venue) %> <span class="glyphicon glyphicon-cutlery"></span><span class="glyphicon glyphicon-glass"></span></h4>
+			<p><%= raw deal.tag_list.map { |t| link_to "#" + t, tag_path(t) }.join(' ') %>
+		</div>
+		<div class="col-xs-4 scores-box">
+			<h3><span class= "label label-danger"><span class="glyphicon glyphicon-certificate"></span>Best Match!</span></h3>
+	  		<% if deal.score > 0 %>
+	  		<p><span class="glyphicon glyphicon-fire"></span> Rating: <%= deal.score %><br/>
+	  		<% end %>
+	  		<% if deal.userlikes > 0 %>
+	  		<span class="glyphicon glyphicon-heart"></span> Likes: <%= deal.userlikes if deal.userlikes > 0%></p>
+	  		<% end %>
+	  		<%#= render 'shared/checkin_form' if user_signed_in? %> 
+			<%= link_to(checkin_deal_path(id: deal), { method: :put, remote: true, class: "btn btn-default btn-sm" }) do %>
+		      <span class="glyphicon glyphicon-home"></span>  Here now?
+		    <% end %>
+		</div>
+	</div>
+	<p><%= deal.content %><br/>
+	<% if (!current_user.nil? && current_user.admin?) %>
+      <%= link_to "edit", edit_deal_path(deal) %>
+      <span> | </span>
+      <%= link_to "delete", deal, method: :delete,
+                                     data: { confirm: "Are you sure?" },
+                                     title: deal.venue %>
+    <% end %></p>
+	<%= render partial: 'deals/deal_btn', locals: { deal1: deal} %>  
+  </div>
+ </div>
+</li>

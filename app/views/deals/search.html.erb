@@ -23,24 +23,9 @@
           <% end %>
 	    </span> 
 	  </div>
+	  <h4 class = "searchbar-tags">SEARCH TRENDS: <%= raw ActsAsTaggableOn::Tag.most_used(5).map { |t| link_to "#"+"#{t.name}", tag_path(t.id), class: "label label-success"  }.join(' ') %></h4>
 	  <%= render 'shared/dropdown' %>
 	<% end %>
-		<%= render 'shared/modal' %>
-		<!-- Alert for a current location matching a deal-->
-		<div class="alert alert-info">
-			<button type="button" class="close" data-dismiss="alert">
-			<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-			</button>
-			<h3>Are you using this deal now?</h3>
-			<div class= "deal-box">
-				<p>Deal info: Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris</p>
-				<p style="text-align:center;">
-				  <!-- Large modal -->
-				<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Here now!</button>
-				<button class="btn btn-primary btn-success" type="button">Where next?</button>
-				</p>
-			</div>
-		</div>
 		<!-- Alert for a current location matching a deal-->
 	  </div>
 	</div>
@@ -49,21 +34,31 @@
 <div class = "container" style=" padding-top: 20px;" >
 <div class = "row">
   <div class ="col-lg-7">
-	<div class="">
-		<p>Sort by: <span class="label label-info">Today ></span>
-		      <span class="label label-default">+ Near you</span>
-		      <span class="label label-success">+ Price</span>
-		      <span class="label label-warning">+ Atmosphere</span></p>
-		<p>Found <span class="badge"><%= @deals.count %></span> <%= "result".pluralize(@deals.count) %></p>
-	    <a href="#"><button type="button" class="btn btn-default btn-sm">List View</button></a>
-	    <a href = "#"><button type="button" class="btn btn-primary btn-sm">Map View</button></a></p>
-	</div>
 	    <h3>SEARCH RESULTS</h3>
+	    <div class="">
+		<!-- <p>Sort by: <span class="label label-info">Today ></span>
+		      <span class="label label-default">+ Near you</span></p> -->
+		<p>Trending now: <%= raw ActsAsTaggableOn::Tag.most_used(5).map { |t| link_to "#"+"#{t.name}", tag_path(t.id), class: "label label-success"  }.join(' ') %></p>
+		<p><%#= raw deal.tag_list.map { |t| link_to "#" + t, tag_path(t) }.join(' ') %>
+		<p>Found <span class="badge"><%= @deals.count %></span> <%= "result".pluralize(@deals.count) %></p>
+	    <!-- <a href="#"><button type="button" class="btn btn-default btn-sm">List View</button></a>
+	    <a href = "#"><button type="button" class="btn btn-primary btn-sm">Map View</button></a></p> -->
+	</div>
+	    <div>
+		  <%= will_paginate( @deals, :renderer => WillPaginate::ActionView::LinkRenderer) %>
+	    </div>
 	    <ul class="deals">
-	    <% @deals.each do |deal| %>  
-	      <%= render partial: 'deals/deal', :locals => {:deal => deal} %>
+	    <% @deals.each_with_index do |deal, i| %>  
+	      <% if i == 0 %>
+	        <%= render partial: 'deals/best_match', :locals => { :deal => deal } %>
+	      <% else %> 
+	        <%= render partial: 'deals/deal', :locals => {:deal => deal} %>
+	      <% end %>
 	    <% end %>
 		</ul>
+		<div>
+		  <%= will_paginate( @deals, :renderer => WillPaginate::ActionView::LinkRenderer) %>
+	    </div>
   </div>
   <div class ="col-lg-5 center">
   	<div style='width: 400px;'>

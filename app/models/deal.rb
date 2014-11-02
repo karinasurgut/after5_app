@@ -54,11 +54,4 @@ class Deal < ActiveRecord::Base
 	end
 	@feed
   end
-
-    # def attributes_nil?(attrs)
-
-    # 	r1 = !attrs[:from_time].nil?
-    # 	r2 = attrs[:all_day]
-    # 	r1 == r2
-    # end
 end

@@ -1,6 +1,6 @@
 class DealsController < ApplicationController
-  #before_action :admin_user, only: [:new, :edit, :create, :update, :destroy]
-
+  before_action :admin_user, only: [:new, :edit, :create, :update, :destroy]
+  before_action :signed_in, only: [ :checkin, :upvote, :downvote, :want ]
   def create
     @venue = Venue.find(deal_params[:venue_id])
     @deal = @venue.deals.build(deal_params)
@@ -12,16 +12,25 @@ class DealsController < ApplicationController
       render 'venues/deal'
     end
   end
+  
+  def show
+    @deal = Deal.find(params[:id])
+  end
 
- def search
-    @lat = cookies[:lat_lng].split("|")[0]
-    @lng = cookies[:lat_lng].split("|")[1]
-    @deals = Deal.search params[:search], :geo => [@lat,@lng],
-    :order => "geodist ASC"
-    if params[:tag]
-      @deals = Deal.tagged_with(params[:tag])
+  def search
+    if cookies[:lat_lng]
+      @lat = cookies[:lat_lng].split("|")[0]
+      @lng = cookies[:lat_lng].split("|")[1]
+    else
+      @lat = -33.873651
+      @lng = 151.2068896
     end
-      @deals= Deal.all
+    @deals = Deal.search params[:search], :geo => [@lat,@lng],
+    :order => "geodist ASC", :page => params[:page], :per_page => 5
+    if params[:tag]
+      @deals = Deal.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 5)
+    end
+    #@deals= Deal.paginate(page: params[:page], per_page: 5)
     @hash = Gmaps4rails.build_markers(@deals) do |deal, marker|
       marker.lat deal.venue.latitude
       marker.lng deal.venue.longitude
@@ -125,6 +134,13 @@ end
     end
 
     def admin_user
-      redirect_to(root_url) unless current_user.admin?
+      redirect_to(root_url) unless (!current_user.nil? && current_user.admin?)
     end
+
+    def signed_in
+      session[:return_to] ||= request.referer
+      flash[:notice] = "Please log in for more action!"
+      redirect_to session.delete(:return_to) unless user_signed_in?
+    end
+
 end

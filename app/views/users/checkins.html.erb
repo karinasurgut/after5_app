@@ -12,10 +12,12 @@
     <hr>
 	<% if @checkin_items.any? %>
     <h3 class="center">Deals you've checked out:</h3>
-  	 <ul class="deals">
+  	 <div class="row">
+     <ul class="deals">
   		<%= render partial: 'deals/deal', collection: @checkin_items %>
 	   </ul>
   <% end %>
+</div>
   </div>
 </div>
 </div>

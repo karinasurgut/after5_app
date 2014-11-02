@@ -1,13 +1,24 @@
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content container">
-      <% if user_signed_in? %>
-        <h3>Your check-in has been saved!</h3>
-        <p><button class="btn btn-primary btn-block" type="button">Share it with friends</button></p>
-      <% else %>
-      	<h3>Please sign in to check in!</h3>
-		<%= render 'shared/fb_signin' %>
-      <% end %>
-	</div>
-  </div>
-</div>
+<%= content_tag("div", class: "modal fade", id: "bs-example-modal-sm-" + "#{deal.id}", role: "dialog", tabindex: -1, aria: { labelledby: "myLargeModalLabel", hidden: true }) do %>
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title"><span class="glyphicon glyphicon-send"></span>  Share the joy</h4>
+      </div>
+      <div class="modal-body">  
+         <%= content_tag("div", " ", class: "fb-share-button", data: { href: deal_url(deal), layout: "button" } ) %>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="#{deal_url(deal)}" data-count="none">Tweet</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+          </script>
+        <script src="//platform.linkedin.com/in.js" type="text/javascript">
+        lang: en_US
+        </script>
+        <script type="IN/Share" data-url="#{deal_url(deal)}"></script>
+         </p>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+<!-- </div>/.modal -->
+<% end %>

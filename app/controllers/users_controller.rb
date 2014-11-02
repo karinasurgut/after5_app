@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :correct_user, only: [:edit,:update, :wishlist, :visited, :checkins]
-  #before_action :authenticate_user!, only: [:edit,:update]
+  before_action :authenticate_user!, only: [:edit,:update]
 
   def new
   end
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def user_location
-    @lat_lng = cookies[:lat_lng].split("|")
+    @lat_lng = cookies[:lat_lng].split("|") || [-33.873651,151.2068896]
   end
 
   def wishlist
