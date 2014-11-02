@@ -23,7 +23,7 @@
           <% end %>
 	    </span> 
 	  </div>
-	  <h4 class = "searchbar-tags">SEARCH TRENDS: <%= raw ActsAsTaggableOn::Tag.most_used(5).map { |t| link_to "#"+"#{t.name}", tag_path(t.id), class: "label label-success"  }.join(' ') %></h4>
+	  <h4 class = "searchbar-tags">SEARCH TRENDS: <%= raw ActsAsTaggableOn::Tag.most_used(5).map { |t| link_to "#"+"#{t.name}", tag_path(t.name), class: "label label-success"  }.join(' ') %></h4>
 	  <%= render 'shared/dropdown' %>
 	<% end %>
 		<!-- Alert for a current location matching a deal-->

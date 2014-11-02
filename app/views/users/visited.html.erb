@@ -11,13 +11,15 @@
   <div class="col-lg-6">
     <hr>
 	<h3 class="center">Venues you've been to</h3>
-  	<ul class="deals">
+  <div class = "row">
+  	<ul class="">
   		<% spots = @user.unique_venues_visited %>
   		<% spots.each do |spot| %>
         <% v = Venue.find_by(id: spot) %>
     		  <%= render partial: 'venues/venue', locals: {venue: v} %>
   		<% end %>
 	  </ul>
+  </div>
   </div>
 </div>
 </div>
