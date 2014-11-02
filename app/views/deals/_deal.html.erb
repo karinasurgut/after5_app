@@ -16,7 +16,7 @@
 	  		<span class="glyphicon glyphicon-heart"></span> Likes: <%= deal.userlikes if deal.userlikes > 0%></p>
 	  		<% end %>
 	  		<%#= render 'shared/checkin_form' if user_signed_in? %>
-			<%= link_to(checkin_deal_path(id: deal), { method: :put, remote: true, class: "btn btn-default btn-sm" }) do %>
+			<%= link_to(checkin_deal_path(deal), { method: :put, remote: true, class: "btn btn-default btn-sm" }) do %>
 		      <span class="glyphicon glyphicon-home"></span>  Here now?
 		    <% end %>
 			<!-- <button type="button" class="btn btn-default btn-sm">
