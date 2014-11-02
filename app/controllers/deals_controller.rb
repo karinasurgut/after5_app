@@ -134,7 +134,7 @@ end
     end
 
     def admin_user
-      redirect_to(root_url) unless (!current_user.nil? && current_user.admin?)
+      redirect_to(root_url) unless (user_signed_in? && current_user.id == 2)
     end
 
     def signed_in

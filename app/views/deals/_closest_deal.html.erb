@@ -25,7 +25,7 @@
 		<%= render partial: 'deals/deal_btn', locals: { deal1: deal} %> 
 	</div>
 </div>
-<div style="text-align:center;">
+<div style="text-align:center;margin-top: 10px;">
   <!-- Large modal -->
   	<%= link_to(checkin_deal_path(id: deal), { method: :put, remote: true, class: "btn btn-lg btn-primary" }) do %>
       <span class="glyphicon glyphicon-home"></span>  Already here?

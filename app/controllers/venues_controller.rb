@@ -27,6 +27,7 @@ class VenuesController < ApplicationController
   end
 
   def show
+    @venue = Venue.find(params[:id])
     @deals = @venue.deals
     @hours = @venue.hours.all
   end
@@ -79,6 +80,6 @@ class VenuesController < ApplicationController
 
     
     def admin_user
-      redirect_to(root_url) unless user_signed_in? # (!current_user.nil? && current_user.admin?)
+      redirect_to(root_url) unless (user_signed_in? && current_user.id == 2)
     end
 end

@@ -25,7 +25,7 @@
 		</div>
 	</div>
 	<p><%= deal.content %><br/>
-	<% if (!current_user.nil? && current_user.admin?) %>
+	<% if (user_signed_in? && current_user.id == 2) %>
       <%= link_to "edit", edit_deal_path(deal) %>
       <span> | </span>
       <%= link_to "delete", deal, method: :delete,

@@ -3,7 +3,7 @@
   <%= image_tag("#{venue.image}", alt:'', style:'width:250px;', class:'img-rounded thumbnail') %>
   <h3><%= link_to venue.name, venue %></h3>
   <p><%= raw venue.tag_list.map { |t| link_to "#" + t, venue_tag_path(t) }.join(' ') %>
-  <%# if current_user.admin? %>
+  <% if (user_signed_in? && current_user.admin?) %>
           <div>
             <%= link_to "Edit Venue", edit_venue_path(venue) %>
             <span> | </span>
@@ -11,6 +11,6 @@
             <span> | </span>
             <%= link_to "delete", venue, method: :delete, data: { confirm: "Sure?"} %>
       	  </div><br/>
-   <%# end %>
+   <% end %>
 </div>
 </li>
