@@ -138,9 +138,12 @@ end
     end
 
     def signed_in
-      session[:return_to] ||= request.referer
-      flash[:notice] = "Please log in for more action!"
-      redirect_to session.delete(:return_to) unless user_signed_in?
+      
+      unless user_signed_in?
+        session[:return_to] ||= request.referer
+        flash[:notice] = "Please log in for more action!"
+        redirect_to session.delete(:return_to)
+      end
     end
 
 end
