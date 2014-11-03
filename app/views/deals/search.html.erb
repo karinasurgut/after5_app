@@ -31,7 +31,7 @@
 	</div>
   </div>
 </div>
-<div class = "container" style=" padding-top: 20px;" >
+<div class = "container search-results-div" >
 <div class = "row">
   <div class ="col-lg-7">
 	    <h3>SEARCH RESULTS</h3>
@@ -60,9 +60,9 @@
 		  <%= will_paginate( @deals, :renderer => WillPaginate::ActionView::LinkRenderer) %>
 	    </div>
   </div>
-  <div class ="col-lg-5 center">
+  <div class ="col-lg-5 center" style = "padding-top: 20px;">
   	<div style='width: 400px;'>
-  		<div id="map" style='width: 400px; height: 400px;'></div>
+  		<div id="map" style='width: 380px; height: 380px;'></div>
 	</div>
   </div>
 </div>
@@ -70,7 +70,24 @@
 <script type="text/javascript">
 	handler = Gmaps.build('Google');
 	handler.buildMap({ 
-		provider: { disableDefaultUI: true }, 
+		provider: { 
+			disableDefaultUI: true,
+			scrollwheel: true,
+
+            styles: [{
+                featureType: "",
+                elementType: "",
+                stylers: [{
+                    saturation: -10
+                }, {
+                    hue: "#017bba"
+                }, {
+                    visibility: "simplified"
+                }]
+            }]
+
+
+		}, 
 		internal: {id: 'map'}}, 
 		function(){
 			//markers = handler.addMarkers(<%=raw @hashuser.to_json %>);

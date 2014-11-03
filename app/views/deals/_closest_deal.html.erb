@@ -27,10 +27,10 @@
 </div>
 <div style="text-align:center;margin-top: 10px;">
   <!-- Large modal -->
-  	<%= link_to(checkin_deal_path(id: deal), { method: :put, remote: true, class: "btn btn-lg btn-primary" }) do %>
+  	<%= link_to(checkin_deal_path(id: deal), { method: :put, remote: true, class: "btn btn-primary" }) do %>
       <span class="glyphicon glyphicon-home"></span>  Already here?
     <% end %>  
-    <%= link_to(venue_path(deal.venue.nearbys(5).first), { class: "btn btn-lg btn-success" }) do %>
+    <%= link_to(venue_path(deal.venue.nearbys(5).first), { class: "btn btn-success" }) do %>
       <span class="glyphicon glyphicon-forward"></span>  Where next?
     <% end %>
 	<!-- <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Here now!</button>

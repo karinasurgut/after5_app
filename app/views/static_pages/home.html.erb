@@ -16,11 +16,11 @@
 	  <h4 class = "searchbar-tags">SEARCH TRENDS: <%= raw ActsAsTaggableOn::Tag.most_used(5).map { |t| link_to "#"+"#{t.name}", tag_path(t.name), class: "label label-success"  }.join(' ') %></h4>
 	  <%= render 'shared/dropdown' %>
 	<% end %>
-	<div class="alert alert-info">
+	<div class="alert alert-info alert-closest-deal">
 		<button type="button" class="close" data-dismiss="alert">
 		<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 		</button>
-		<h3 id ="test-aj center">Looking for a quick fix? Check out this deal near you!</h3>
+		<h3 id ="test-aj center" style= "padding-left: 10px;">Looking for a quick fix? Check out this deal near you!</h3>
 		<div class= "deal-box">
 			<% @closest_deal = closest_deal %>
 			<% @closest =  Deal.find(@closest_deal) %>

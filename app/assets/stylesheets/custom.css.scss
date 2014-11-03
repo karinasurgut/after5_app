@@ -166,15 +166,18 @@ h4.home-title{
     }
 }
 
-#fb_login_button { 
+.fb_share_button { 
     width: 80px; 
 }
-#fb_login_button span, 
-#fb_login_button iframe {.
+.fb_share_button span, 
+.fb_share_button iframe {.
     width: 80px !important;
     height: 25px !important;
 }
 
+.modal-sharing {
+  line-height: 0.7;
+}
 /*searchbar on home and search pages*/
 .searchbar {
   border: 5px solid #e73363;
@@ -194,6 +197,7 @@ h4.home-title{
 }
 .searchbar-tags {
   margin-bottom: 30px!important;
+  line-height: 1.5;
 }
 
 .featured div img{
@@ -218,7 +222,14 @@ margin-top:15px;
 .deal-carousel img {
 height:120px;
 width:120px;
+margin: 0 auto;
 }
+.deal-carousel-title{ 
+  padding-left: 5px;
+padding-right: 5px;
+text-align: center;
+}
+
 .featured-title{
   font-family: 'Terembura', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 font-size:23px;
@@ -534,6 +545,41 @@ border: #00b3e5 2px solid;
 }
 .slick-next:before {
   color: #7f797b;
+}
+
+@media screen and (max-width: 480px) {
+  .panel-body {
+    padding: 10px;
+  }
+
+  .panel-body h3{ 
+    font-size: 19px;
+  }
+  .search-results-div {
+    padding-top: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .venue-right{
+   padding: 0;
+  }
+
+  .container-featured h4 {
+    font-size: 13px;
+  }
+
+  .alert-closest-deal {
+    padding: 5px;
+    h3 {
+      font-size: 20px;
+    }
+  }
+  .deals-user-list {
+    padding-left: 0;
+padding-right: 0;
+  }
+
 }
 
 @media screen and (min-width: 768px) {

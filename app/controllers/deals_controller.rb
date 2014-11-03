@@ -25,7 +25,7 @@ class DealsController < ApplicationController
       @lat = -33.873651
       @lng = 151.2068896
     end
-    @deals = Deal.search params[:search], :geo => [@lat,@lng],
+    @deals = Deal.search params[:search],  :star => true, :populate => true, :geo => [@lat,@lng],
     :order => "geodist ASC", :page => params[:page], :per_page => 5
     if params[:tag]
       @deals = Deal.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 5)

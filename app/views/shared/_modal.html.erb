@@ -5,9 +5,8 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title"><span class="glyphicon glyphicon-send"></span>  Share the joy</h4>
       </div>
-      <div class="modal-body">  
-         <%= content_tag("div", " ", class: "fb-share-button", data: { href: deal_url(deal), layout: "button" } ) %>
-          <a href="https://twitter.com/share" class="twitter-share-button" data-url="#{deal_url(deal)}" data-count="none">Tweet</a>
+      <div class="modal-body modal-sharing">  
+         <%= content_tag("div", " ", class: "fb-share-button", style: "margin-right: 5px;", data: { href: deal_url(deal), layout: "button" } ) %><a href="https://twitter.com/share" class="twitter-share-button" data-url="#{deal_url(deal)}" data-count="none">Tweet</a>
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
           </script>
         <script src="//platform.linkedin.com/in.js" type="text/javascript">
